@@ -35,7 +35,7 @@ export class SystemUserWebRepository extends SystemUserRepository {
   getAllSystemUser(filter: PageFilterModel): Observable<PageResultModel<SystemUserModel>> {
     var request = this.http
       .getAll<PageResultModel<SystemUserWebEntity>>(
-        `${environment.SYSTEMUSER}system-user/get-all${makeParamFilterGrid(filter)}`
+        `${environment.SYSTEMUSER}system-user/teste-cesar${makeParamFilterGrid(filter)}`
       )
       .pipe(
         map((x) => {
@@ -46,12 +46,23 @@ export class SystemUserWebRepository extends SystemUserRepository {
   }
 
   postSystemUser(param: SystemUserModel) {
-    return this.http
+    var oto = this.http
+      .post<SystemUserWebEntity>(
+        `${environment.SYSTEMUSER}system-user/teste-post-cesar`,
+        this.mapper.mapTo(param)
+      )
+      .pipe(map((x) => this.mapper.mapFrom(x.data)));
+
+    oto.subscribe();
+
+    var teste = this.http
       .post<SystemUserWebEntity>(
         `${environment.SYSTEMUSER}system-user/create`,
         this.mapper.mapTo(param)
       )
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
+
+    return teste;
   }
 
   putSystemUser(param: SystemUserModel) {

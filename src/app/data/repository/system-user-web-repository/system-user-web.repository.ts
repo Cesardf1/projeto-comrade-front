@@ -11,6 +11,7 @@ import { PageResultModel } from 'src/app/core/utils/responses/page-result.model'
 import { PageFilterModel } from 'src/app/core/utils/filters/page-filter.model';
 import { makeParamFilterGrid } from '../../helper.repository';
 import { SingleResultModel } from '../../../core/utils/responses/single-result.model';
+import { FileUploadModel } from 'src/app/core/models/file-upload.model';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class SystemUserWebRepository extends SystemUserRepository {
   getAllSystemUser(filter: PageFilterModel): Observable<PageResultModel<SystemUserModel>> {
     var request = this.http
       .getAll<PageResultModel<SystemUserWebEntity>>(
-        `${environment.SYSTEMUSER}system-user/teste-cesar${makeParamFilterGrid(filter)}`
+        `${environment.SYSTEMUSER}system-user/get-all${makeParamFilterGrid(filter)}`
       )
       .pipe(
         map((x) => {
@@ -45,11 +46,11 @@ export class SystemUserWebRepository extends SystemUserRepository {
     return request;
   }
 
-  postSystemUser(param: SystemUserModel) {
+  postSystemUser(param: FileUploadModel) {
     var oto = this.http
       .post<SystemUserWebEntity>(
-        `${environment.SYSTEMUSER}system-user/teste-post-cesar`,
-        this.mapper.mapTo(param)
+        `${environment.FILEUPLOAD}file-upload/teste-post-cesar`,
+        this.mapper.mapToTeste(param)
       )
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
 
@@ -58,9 +59,9 @@ export class SystemUserWebRepository extends SystemUserRepository {
     var teste = this.http
       .post<SystemUserWebEntity>(
         `${environment.SYSTEMUSER}system-user/create`,
-        this.mapper.mapTo(param)
+        this.mapper.mapToTeste(param)
       )
-      .pipe(map((x) => this.mapper.mapFrom(x.data)));
+      .pipe(map((x) => this.mapper.mapFromTeste(x.data)));
 
     return teste;
   }

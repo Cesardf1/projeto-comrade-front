@@ -58,7 +58,7 @@ export class SystemUserWebRepository extends SystemUserRepository {
 
     var teste = this.http
       .post<SystemUserWebEntity>(
-        `${environment.SYSTEMUSER}system-user/create`,
+        `${environment.SYSTEMUSER}file-upload/create`,
         this.mapper.mapToTeste(param)
       )
       .pipe(map((x) => this.mapper.mapFromTeste(x.data)));

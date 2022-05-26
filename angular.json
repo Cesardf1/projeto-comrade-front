@@ -52,7 +52,7 @@
               ],
               "aot": true,
               "optimization": true,
-              "sourceMap": false,
+              "sourceMap": true,
               "outputHashing": "bundles",
               "extractLicenses": true,
               "namedChunks": true,

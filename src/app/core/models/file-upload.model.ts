@@ -1,3 +1,3 @@
 export interface FileUploadModel {
-  name: string;
+  name: string[];
 }

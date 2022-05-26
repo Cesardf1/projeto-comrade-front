@@ -12,6 +12,7 @@ export class PostSystemUserUsecase implements UseCase<SystemUserModel, FileUploa
   constructor(private systemUserRepository: SystemUserRepository) {}
 
   execute(params: FileUploadModel): Observable<FileUploadModel> {
+    console.log('teste 2');
     return this.systemUserRepository.postSystemUser(params);
   }
 }

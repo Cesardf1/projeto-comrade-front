@@ -1,3 +1,3 @@
 export interface FileUploadWebEntity {
-  name: string;
+  name: string[];
 }

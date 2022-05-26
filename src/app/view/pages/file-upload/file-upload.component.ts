@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAllSystemUserUsecase } from '../../../core/usecases/system-user/get-all-system-user.usecase';
-import { SystemUserModel } from '../../../core/models/system-user.model';
+import { GetAllFileUploadUsecase } from '../../../core/usecases/file-upload/get-all-file-upload.usecase';
 import { PageResultModel } from '../../../core/utils/responses/page-result.model';
-import { PostSystemUserUsecase } from 'src/app/core/usecases/system-user/post-system-user.usecase';
+import { PostFileUploadUsecase } from 'src/app/core/usecases/file-upload/post-file-upload.usecase';
 import { FileUploadModel } from 'src/app/core/models/file-upload.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,12 +13,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FileUploadComponent implements OnInit {
   fileName = '';
-  dataSource!: SystemUserModel[];
+  dataSource!: FileUploadModel[];
   data?: FileUploadModel;
   testLines: string[] = [];
   constructor(
-    private getAllSystemUser: GetAllSystemUserUsecase,
-    private postSystemUserUseCase: PostSystemUserUsecase,
+    private getAllFileUpload: GetAllFileUploadUsecase,
+    private postFileUploadUseCase: PostFileUploadUsecase,
     private http: HttpClient
   ) {}
 
@@ -61,11 +60,11 @@ export class FileUploadComponent implements OnInit {
       name: this.lines,
     };
     console.log('teste 1');
-    this.postSystemUserUseCase.execute(this.data).subscribe();
+    this.postFileUploadUseCase.execute(this.data).subscribe();
 
-    this.getAllSystemUser
+    this.getAllFileUpload
       .execute({ pageSize: 20, pageNumber: 1 })
-      .subscribe((grid: PageResultModel<SystemUserModel>) => {
+      .subscribe((grid: PageResultModel<FileUploadModel>) => {
         this.dataSource = grid.data!;
       });
   }

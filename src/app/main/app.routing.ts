@@ -26,9 +26,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'file-upload',
+    path: 'financial-transaction',
     loadChildren: () =>
-      import('../view/pages/file-upload/file-upload.module').then((m) => m.FileUploadModule),
+      import('../view/pages/financial-transaction/financial-transaction.module').then(
+        (m) => m.FinancialTransactionModule
+      ),
     canActivate: [AuthGuard],
   },
 

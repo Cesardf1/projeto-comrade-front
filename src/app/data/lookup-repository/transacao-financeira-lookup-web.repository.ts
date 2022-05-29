@@ -4,14 +4,14 @@ import { map } from 'rxjs/operators';
 import { LookupModel } from 'src/app/core/models/lookup.model';
 import { BaseHttpService } from 'src/app/services/http/base-http.service';
 import { environment } from 'src/environments/environment';
-import { FileUploadLookupRepository } from '../../core/lookups/ba-usu-lookup/file-upload-lookup.repository';
+import { FinancialTransactionLookupRepository } from '../../core/lookups/ba-usu-lookup/financial-transaction-lookup.repository';
 import { LookupWebEntity } from './helpers/lookup-web-entity';
 import { LookupWebRepositoryMapper } from './helpers/lookup-web-repository-mapper';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FileUploadLookupWebRepository extends FileUploadLookupRepository {
+export class FinancialTransactionLookupWebRepository extends FinancialTransactionLookupRepository {
   mapper = new LookupWebRepositoryMapper();
 
   constructor(public http: BaseHttpService) {
@@ -20,7 +20,7 @@ export class FileUploadLookupWebRepository extends FileUploadLookupRepository {
 
   GetAll(): Observable<LookupModel[]> {
     return this.http
-      .getAll<LookupWebEntity[]>(`${environment.FILEUPLOAD}common/lookup-file-upload`)
+      .getAll<LookupWebEntity[]>(`${environment.FILEUPLOAD}common/lookup-financial-transaction`)
       .pipe(
         map((item) => {
           return item.data;
@@ -36,7 +36,7 @@ export class FileUploadLookupWebRepository extends FileUploadLookupRepository {
   GetAllByName(nome: string): Observable<LookupModel[]> {
     return this.http
       .getAll<LookupWebEntity[]>(
-        `${environment.FILEUPLOAD}common/lookup-predicate-file-upload-by-name/${nome}`
+        `${environment.FILEUPLOAD}common/lookup-predicate-financial-transaction-by-name/${nome}`
       )
       .pipe(
         map((item) => {

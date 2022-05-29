@@ -19684,46 +19684,46 @@ input.dx-hidden {
 .dx-tabpanel .dx-tabs-wrapper {
   display: block;
 }
-.dx-fileuploader.dx-state-disabled .dx-fileuploader-input {
+.dx-financialtransactioner.dx-state-disabled .dx-financialtransactioner-input {
   display: none;
 }
-.dx-fileuploader-wrapper {
+.dx-financialtransactioner-wrapper {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
-.dx-fileuploader-container {
+.dx-financialtransactioner-container {
   display: table;
   table-layout: fixed;
   height: 100%;
   width: 100%;
 }
-.dx-fileuploader-input-wrapper::after,
-.dx-fileuploader-input-wrapper::before {
+.dx-financialtransactioner-input-wrapper::after,
+.dx-financialtransactioner-input-wrapper::before {
   display: table;
   content: "";
   line-height: 0;
   width: 100%;
 }
-.dx-fileuploader-input-wrapper::after {
+.dx-financialtransactioner-input-wrapper::after {
   clear: both;
   padding-bottom: 1em;
   margin-bottom: -1em;
 }
-.dx-fileuploader-input-wrapper::before {
+.dx-financialtransactioner-input-wrapper::before {
   padding-top: 1em;
   margin-top: -1em;
 }
-.dx-fileuploader-input-wrapper .dx-button {
+.dx-financialtransactioner-input-wrapper .dx-button {
   float: left;
 }
-.dx-fileuploader-input-wrapper .dx-button + .dx-button {
+.dx-financialtransactioner-input-wrapper .dx-button + .dx-button {
   margin-left: 12px;
 }
-.dx-fileuploader-button {
+.dx-financialtransactioner-button {
   position: relative;
 }
-.dx-fileuploader-button .dx-fileuploader-input {
+.dx-financialtransactioner-button .dx-financialtransactioner-input {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -19731,58 +19731,58 @@ input.dx-hidden {
   left: 0;
   cursor: pointer;
 }
-.dx-fileuploader-button .dx-fileuploader-input::-ms-browse,
-.dx-fileuploader-button .dx-fileuploader-input::-webkit-file-upload-button {
+.dx-financialtransactioner-button .dx-financialtransactioner-input::-ms-browse,
+.dx-financialtransactioner-button .dx-financialtransactioner-input::-webkit-financial-transaction-button {
   cursor: pointer;
 }
-.dx-fileuploader-content {
+.dx-financialtransactioner-content {
   display: table-row-group;
   vertical-align: middle;
 }
-.dx-fileuploader-content > .dx-fileuploader-upload-button {
+.dx-financialtransactioner-content > .dx-financialtransactioner-upload-button {
   margin-top: 10px;
 }
-.dx-fileuploader-empty .dx-fileuploader-content > .dx-fileuploader-upload-button {
+.dx-financialtransactioner-empty .dx-financialtransactioner-content > .dx-financialtransactioner-upload-button {
   display: none;
 }
-.dx-fileuploader-input-content {
+.dx-financialtransactioner-input-content {
   width: 100%;
   display: table;
 }
-.dx-fileuploader-files-container {
+.dx-financialtransactioner-files-container {
   padding-top: 0;
   width: 100%;
 }
-.dx-fileuploader-file-container {
+.dx-financialtransactioner-file-container {
   width: 100%;
   padding: 4px 0;
 }
-.dx-fileuploader-file-container .dx-button {
+.dx-financialtransactioner-file-container .dx-button {
   width: 28px;
   height: 28px;
   margin-right: 10px;
 }
-.dx-fileuploader-file-container .dx-button.dx-state-invisible {
+.dx-financialtransactioner-file-container .dx-button.dx-state-invisible {
   margin-right: 0;
 }
-.dx-fileuploader-button-container,
-.dx-fileuploader-input-container {
+.dx-financialtransactioner-button-container,
+.dx-financialtransactioner-input-container {
   display: table-cell;
   vertical-align: middle;
 }
-.dx-fileuploader-input-container {
+.dx-financialtransactioner-input-container {
   height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
 }
-.dx-fileuploader-input {
+.dx-financialtransactioner-input {
   opacity: 0;
   width: 100%;
   margin: 0;
   cursor: default;
 }
-.dx-fileuploader-input-label {
+.dx-financialtransactioner-input-label {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -19791,88 +19791,88 @@ input.dx-hidden {
   width: 100%;
   cursor: default;
 }
-.dx-fileuploader-input-label::before {
+.dx-financialtransactioner-input-label::before {
   content: "";
   position: absolute;
   top: -50%;
   overflow: hidden;
   cursor: default;
 }
-.dx-fileuploader-button-container {
+.dx-financialtransactioner-button-container {
   display: table-cell;
   vertical-align: middle;
 }
-.dx-fileuploader-file-info {
+.dx-financialtransactioner-file-info {
   float: left;
   width: 100%;
 }
-.dx-fileuploader-file-status-message {
+.dx-financialtransactioner-file-status-message {
   float: left;
   font-size: 12px;
   height: 16px;
 }
-.dx-fileuploader .dx-progressbar {
+.dx-financialtransactioner .dx-progressbar {
   float: left;
   width: 100%;
   height: 22px;
   margin-top: -6px;
 }
-.dx-rtl .dx-fileuploader .dx-fileuploader-button,
-.dx-rtl.dx-fileuploader .dx-fileuploader-button {
+.dx-rtl .dx-financialtransactioner .dx-financialtransactioner-button,
+.dx-rtl.dx-financialtransactioner .dx-financialtransactioner-button {
   float: right;
 }
-.dx-rtl .dx-fileuploader .dx-fileuploader-file-container .dx-fileuploader-button,
-.dx-rtl.dx-fileuploader .dx-fileuploader-file-container .dx-fileuploader-button {
+.dx-rtl .dx-financialtransactioner .dx-financialtransactioner-file-container .dx-financialtransactioner-button,
+.dx-rtl.dx-financialtransactioner .dx-financialtransactioner-file-container .dx-financialtransactioner-button {
   margin-left: 10px;
   margin-right: 0;
 }
-.dx-rtl .dx-fileuploader .dx-fileuploader-file-name,
-.dx-rtl .dx-fileuploader .dx-fileuploader-file-size,
-.dx-rtl .dx-fileuploader .dx-fileuploader-file-status-message,
-.dx-rtl.dx-fileuploader .dx-fileuploader-file-name,
-.dx-rtl.dx-fileuploader .dx-fileuploader-file-size,
-.dx-rtl.dx-fileuploader .dx-fileuploader-file-status-message {
+.dx-rtl .dx-financialtransactioner .dx-financialtransactioner-file-name,
+.dx-rtl .dx-financialtransactioner .dx-financialtransactioner-file-size,
+.dx-rtl .dx-financialtransactioner .dx-financialtransactioner-file-status-message,
+.dx-rtl.dx-financialtransactioner .dx-financialtransactioner-file-name,
+.dx-rtl.dx-financialtransactioner .dx-financialtransactioner-file-size,
+.dx-rtl.dx-financialtransactioner .dx-financialtransactioner-file-status-message {
   float: right;
 }
-.dx-rtl .dx-fileuploader .dx-fileuploader-file-size,
-.dx-rtl.dx-fileuploader .dx-fileuploader-file-size {
+.dx-rtl .dx-financialtransactioner .dx-financialtransactioner-file-size,
+.dx-rtl.dx-financialtransactioner .dx-financialtransactioner-file-size {
   margin-right: 4px;
 }
-.dx-fileuploader-invalid .dx-fileuploader-file-status-message {
+.dx-financialtransactioner-invalid .dx-financialtransactioner-file-status-message {
   height: auto;
   color: #f44336;
 }
-.dx-fileuploader-invalid .dx-fileuploader-file-status-message span {
+.dx-financialtransactioner-invalid .dx-financialtransactioner-file-status-message span {
   display: block;
   margin-bottom: 2px;
 }
-.dx-fileuploader-wrapper {
+.dx-financialtransactioner-wrapper {
   padding: 7px;
 }
-.dx-fileuploader-content > .dx-fileuploader-upload-button {
+.dx-financialtransactioner-content > .dx-financialtransactioner-upload-button {
   margin-left: 3px;
   margin-right: 3px;
 }
-.dx-fileuploader-input-wrapper {
+.dx-financialtransactioner-input-wrapper {
   padding: 7px 0;
   border: 3px dashed transparent;
 }
-.dx-fileuploader.dx-state-disabled .dx-fileuploader-input-label {
+.dx-financialtransactioner.dx-state-disabled .dx-financialtransactioner-input-label {
   position: relative;
 }
-.dx-fileuploader-dragover .dx-fileuploader-input-wrapper {
+.dx-financialtransactioner-dragover .dx-financialtransactioner-input-wrapper {
   border: none;
   padding: 0;
 }
-.dx-fileuploader-dragover .dx-fileuploader-input-wrapper .dx-fileuploader-button {
+.dx-financialtransactioner-dragover .dx-financialtransactioner-input-wrapper .dx-financialtransactioner-button {
   display: none;
 }
-.dx-fileuploader-dragover .dx-fileuploader-input-container {
+.dx-financialtransactioner-dragover .dx-financialtransactioner-input-container {
   display: block;
   border: 3px dashed #e0e0e0;
   width: 100%;
 }
-.dx-fileuploader-dragover .dx-fileuploader-input {
+.dx-financialtransactioner-dragover .dx-financialtransactioner-input {
   display: block;
   width: 100%;
   padding: 14px 3px;
@@ -19880,66 +19880,66 @@ input.dx-hidden {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
-.dx-fileuploader-dragover .dx-fileuploader-input-label {
+.dx-financialtransactioner-dragover .dx-financialtransactioner-input-label {
   text-align: center;
   padding: 14px 9px;
 }
-.dx-fileuploader-file-size,
-.dx-fileuploader-file-status-message {
+.dx-financialtransactioner-file-size,
+.dx-financialtransactioner-file-status-message {
   color: rgba(102,102,102,.87);
 }
-.dx-fileuploader-input {
+.dx-financialtransactioner-input {
   padding: 7px 0;
 }
-.dx-fileuploader-input-label {
+.dx-financialtransactioner-input-label {
   padding: 8px 9px;
   color: rgba(0,0,0,.87);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.dx-fileuploader-show-file-list .dx-fileuploader-files-container {
+.dx-financialtransactioner-show-file-list .dx-financialtransactioner-files-container {
   padding: 14px 3px 0;
 }
-.dx-fileuploader-empty .dx-fileuploader-files-container {
+.dx-financialtransactioner-empty .dx-financialtransactioner-files-container {
   padding: 0;
 }
-.dx-invalid .dx-fileuploader-files-container {
+.dx-invalid .dx-financialtransactioner-files-container {
   padding-top: 50px;
 }
-.dx-fileuploader-files-container .dx-fileuploader-button .dx-button-content {
+.dx-financialtransactioner-files-container .dx-financialtransactioner-button .dx-button-content {
   padding: 0;
 }
-.dx-fileuploader-files-container .dx-fileuploader-file-container {
+.dx-financialtransactioner-files-container .dx-financialtransactioner-file-container {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
   padding: 5px 8px;
   margin-bottom: 4px;
 }
-.dx-fileuploader-files-container .dx-fileuploader-file-container .dx-fileuploader-button-container + .dx-fileuploader-button-container .dx-button {
+.dx-financialtransactioner-files-container .dx-financialtransactioner-file-container .dx-financialtransactioner-button-container + .dx-financialtransactioner-button-container .dx-button {
   margin-right: 15px;
 }
-.dx-rtl .dx-fileuploader-files-container .dx-fileuploader-file-container .dx-fileuploader-button-container + .dx-fileuploader-button-container .dx-button {
+.dx-rtl .dx-financialtransactioner-files-container .dx-financialtransactioner-file-container .dx-financialtransactioner-button-container + .dx-financialtransactioner-button-container .dx-button {
   margin-left: 15px;
   margin-right: 0;
 }
-.dx-fileuploader-files-container .dx-fileuploader-file-container .dx-button {
+.dx-financialtransactioner-files-container .dx-financialtransactioner-file-container .dx-button {
   height: 36px;
   width: 36px;
   margin-right: 5px;
 }
-.dx-rtl .dx-fileuploader-files-container .dx-fileuploader-file-container .dx-button {
+.dx-rtl .dx-financialtransactioner-files-container .dx-financialtransactioner-file-container .dx-button {
   margin-left: 5px;
   margin-right: 0;
 }
-.dx-fileuploader-file {
+.dx-financialtransactioner-file {
   display: table-cell;
   width: 100%;
   white-space: nowrap;
   padding-top: 5px;
   line-height: 13px;
 }
-.dx-fileuploader-file-name {
+.dx-financialtransactioner-file-name {
   float: left;
   max-width: 100%;
   overflow: hidden;
@@ -19949,23 +19949,23 @@ input.dx-hidden {
   color: rgba(0,0,0,.87);
   font-weight: 500;
 }
-.dx-fileuploader-file-size {
+.dx-financialtransactioner-file-size {
   margin-left: 4px;
   float: left;
   vertical-align: super;
   font-size: 10px;
   padding-bottom: 3.5px;
 }
-.dx-fileuploader-invalid .dx-fileuploader-file-status-message span:first-child {
+.dx-financialtransactioner-invalid .dx-financialtransactioner-file-status-message span:first-child {
   margin-top: 2px;
 }
-.dx-fileuploader-invalid .dx-fileuploader-file-status-message span:last-child {
+.dx-financialtransactioner-invalid .dx-financialtransactioner-file-status-message span:last-child {
   margin-bottom: 2px;
 }
-.dx-fileuploader-invalid .dx-fileuploader-button-container {
+.dx-financialtransactioner-invalid .dx-financialtransactioner-button-container {
   vertical-align: middle;
 }
-.dx-fileuploader-invalid .dx-fileuploader-cancel-button {
+.dx-financialtransactioner-invalid .dx-financialtransactioner-cancel-button {
   margin-top: 0;
 }
 .dx-scheduler-appointment-popup .dx-popup-content {
@@ -24483,7 +24483,7 @@ input.dx-hidden {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-.dx-filemanager .dx-filemanager-fileuploader-dropzone-placeholder {
+.dx-filemanager .dx-filemanager-financialtransactioner-dropzone-placeholder {
   position: relative;
   top: 0;
   left: 0;
@@ -24798,7 +24798,7 @@ input.dx-hidden {
   padding-left: 6px;
   padding-right: 6px;
 }
-.dx-filemanager .dx-filemanager-fileuploader-dropzone-placeholder {
+.dx-filemanager .dx-filemanager-financialtransactioner-dropzone-placeholder {
   border: 2px solid #ff5722;
 }
 .dx-filemanager .dx-filemanager-container {

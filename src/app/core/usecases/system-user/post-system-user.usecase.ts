@@ -3,15 +3,15 @@ import { UseCase } from '../../utils/bases/use-case';
 import { Observable } from 'rxjs';
 import { SystemUserModel } from '../../models/system-user.model';
 import { SystemUserRepository } from '../../repositories/system-user.repository';
-import { FileUploadModel } from '../../models/file-upload.model';
+import { FinancialTransactionModel } from '../../models/financial-transaction.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostSystemUserUsecase implements UseCase<SystemUserModel, FileUploadModel> {
+export class PostSystemUserUsecase implements UseCase<SystemUserModel, FinancialTransactionModel> {
   constructor(private systemUserRepository: SystemUserRepository) {}
 
-  execute(params: FileUploadModel): Observable<FileUploadModel> {
+  execute(params: SystemUserModel): Observable<SystemUserModel> {
     console.log('teste 2');
     return this.systemUserRepository.postSystemUser(params);
   }

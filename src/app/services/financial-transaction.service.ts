@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FileUploadService {
+export class FinancialTransactionService {
   // API url
   baseApiUrl = 'https://file.io';
 

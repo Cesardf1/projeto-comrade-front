@@ -14,8 +14,8 @@ import { TokenWebRepository } from '../data/repository/token-web-reporitory/toke
 import { TokenRepository } from '../core/repositories/token.repository';
 import { SystemUserLookupRepository } from '../core/lookups/ba-usu-lookup/system-user-lookup.repository';
 import { SystemUserLookupWebRepository } from '../data/lookup-repository/usuario-sistema-lookup-web.repository';
-import { FileUploadLookupRepository } from '../core/lookups/ba-usu-lookup/file-upload-lookup.repository';
-import { FileUploadLookupWebRepository } from '../data/lookup-repository/arquivo-upload-lookup-web.repository';
+import { FinancialTransactionLookupRepository } from '../core/lookups/ba-usu-lookup/financial-transaction-lookup.repository';
+import { FinancialTransactionLookupWebRepository } from '../data/lookup-repository/transacao-financeira-lookup-web.repository';
 import { AirplaneRepository } from '../core/repositories/airplane.repository';
 import { AirplaneWebRepository } from '../data/repository/airplane-web-repository/airplane-web.repository';
 import { ComradeTokenRepository } from '../core/repositories/comrade-token.repository';
@@ -38,8 +38,8 @@ import { GlobalErrorHandlerService } from '../services/handlers/global-error-han
 import { AuthInterceptor } from '../services/interceptors/auth.interceptor';
 import { SystemUserRepository } from '../core/repositories/system-user.repository';
 import { SystemUserWebRepository } from '../data/repository/system-user-web-repository/system-user-web.repository';
-import { FileUploadRepository } from '../core/repositories/file-upload.repository';
-import { FileUploadWebRepository } from '../data/repository/file-upload-web-repository/file-upload-web-repository';
+import { FinancialTransactionRepository } from '../core/repositories/financial-transaction.repository';
+import { FinancialTransactionWebRepository } from '../data/repository/financial-transaction-web-repository/financial-transaction-web-repository';
 
 export function getBaseHref(platformLocation: PlatformLocation): string {
   return platformLocation.getBaseHrefFromDOM();
@@ -79,10 +79,13 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     { provide: LocationStrategy, useClass: PathLocationStrategy },
     { provide: AirplaneRepository, useClass: AirplaneWebRepository },
     { provide: SystemUserRepository, useClass: SystemUserWebRepository },
-    { provide: FileUploadRepository, useClass: FileUploadWebRepository },
+    { provide: FinancialTransactionRepository, useClass: FinancialTransactionWebRepository },
     { provide: AuthenticationRepository, useClass: AuthenticationWebRepository },
     { provide: TokenRepository, useClass: TokenWebRepository },
-    { provide: FileUploadLookupRepository, useClass: FileUploadLookupWebRepository },
+    {
+      provide: FinancialTransactionLookupRepository,
+      useClass: FinancialTransactionLookupWebRepository,
+    },
   ],
   bootstrap: [AppComponent],
 })

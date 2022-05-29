@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FileUploadComponent } from './file-upload.component';
+import { FinancialTransactionComponent } from './financial-transaction.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FileUploadComponent,
+    component: FinancialTransactionComponent,
   },
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FileUploadRoutingModule {}
+export class FinancialTransactionRoutingModule {}

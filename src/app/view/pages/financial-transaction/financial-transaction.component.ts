@@ -1,28 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAllFileUploadUsecase } from '../../../core/usecases/file-upload/get-all-file-upload.usecase';
+import { GetAllFinancialTransactionUsecase } from '../../../core/usecases/financial-transaction/get-all-financial-transaction.usecase';
 import { PageResultModel } from '../../../core/utils/responses/page-result.model';
-import { PostFileUploadUsecase } from 'src/app/core/usecases/file-upload/post-file-upload.usecase';
-import { FileUploadModel } from 'src/app/core/models/file-upload.model';
+import { PostFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/post-financial-transaction.usecase';
+import { FinancialTransactionModel } from 'src/app/core/models/financial-transaction.model';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-file-upload',
-  templateUrl: 'file-upload.component.html',
-  styleUrls: ['file-upload.component.scss'],
+  selector: 'app-financial-transaction',
+  templateUrl: 'financial-transaction.component.html',
+  styleUrls: ['financial-transaction.component.scss'],
   providers: [],
 })
-export class FileUploadComponent implements OnInit {
+export class FinancialTransactionComponent implements OnInit {
   fileName = '';
-  dataSource!: FileUploadModel[];
-  data?: FileUploadModel;
+  dataSource!: FinancialTransactionModel[];
+  data?: FinancialTransactionModel;
   testLines: string[] = [];
   constructor(
-    private getAllFileUpload: GetAllFileUploadUsecase,
-    private postFileUploadUseCase: PostFileUploadUsecase,
+    private getAllFinancialTransaction: GetAllFinancialTransactionUsecase,
+    private postFinancialTransactionUseCase: PostFinancialTransactionUsecase,
     private http: HttpClient
   ) {}
 
   lines?: any;
+
+  checkoutForm = this.formBuilder.group({
+    name: '',
+    address: '',
+  });
 
   ngOnInit(): void {}
 
@@ -60,11 +66,11 @@ export class FileUploadComponent implements OnInit {
       name: this.lines,
     };
     console.log('teste 1');
-    this.postFileUploadUseCase.execute(this.data).subscribe();
+    this.postFinancialTransactionUseCase.execute(this.data).subscribe();
 
-    this.getAllFileUpload
+    this.getAllFinancialTransaction
       .execute({ pageSize: 20, pageNumber: 1 })
-      .subscribe((grid: PageResultModel<FileUploadModel>) => {
+      .subscribe((grid: PageResultModel<FinancialTransactionModel>) => {
         this.dataSource = grid.data!;
       });
   }

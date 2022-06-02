@@ -7,3 +7,27 @@
     <mat-icon style="width: 60px">attach_file</mat-icon>
   </button>
 </div>
+<form [formGroup]="formTransaction" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="Tipo">Tipo: </label>
+    <input id="ipo" type="text" formControlName="tipo" />
+    <label for="Data">Data: </label>
+    <input id="Data" type="text" formControlName="data" />
+    <label for="Valor">Valor: </label>
+    <input id="Valor" type="text" formControlName="valor" />
+    <label for="CPF">CPF: </label>
+    <input id="CPF" type="text" formControlName="cpf" />
+  </div>
+  <div>
+    <label for="Cartao">Cartao: </label>
+    <input id="Cartao" type="text" formControlName="cartao" />
+    <label for="Hora">Hora: </label>
+    <input id="Hora" type="text" formControlName="hora" />
+    <label for="DonoDaLoja">Dono da Loja: </label>
+    <input id="DonoDaLoja" type="text" formControlName="donoDaLoja" />
+    <label for="NomeDaLoja">Nome Da Loja: </label>
+    <input id="NomeDaLoja" type="text" formControlName="nomeDaLoja" />
+  </div>
+
+  <button type="submit" [disabled]="!formTransaction.valid">Submit</button>
+</form>

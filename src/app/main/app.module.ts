@@ -40,7 +40,6 @@ import { SystemUserRepository } from '../core/repositories/system-user.repositor
 import { SystemUserWebRepository } from '../data/repository/system-user-web-repository/system-user-web.repository';
 import { FinancialTransactionRepository } from '../core/repositories/financial-transaction.repository';
 import { FinancialTransactionWebRepository } from '../data/repository/financial-transaction-web-repository/financial-transaction-web-repository';
-
 export function getBaseHref(platformLocation: PlatformLocation): string {
   return platformLocation.getBaseHrefFromDOM();
 }

@@ -4,9 +4,16 @@ import { FinancialTransactionComponent } from './financial-transaction.component
 import { FinancialTransactionRoutingModule } from './financial-transaction.routing';
 import { throwIfAlreadyLoaded } from '../../../services/guards/module-import.guard';
 import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [DxDataGridModule, DxFormModule, FinancialTransactionRoutingModule, MatIconModule],
+  imports: [
+    DxDataGridModule,
+    DxFormModule,
+    FinancialTransactionRoutingModule,
+    MatIconModule,
+    ReactiveFormsModule,
+  ],
   exports: [],
   declarations: [FinancialTransactionComponent],
   providers: [],

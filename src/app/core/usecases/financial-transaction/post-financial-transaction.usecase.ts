@@ -13,7 +13,7 @@ export class PostFinancialTransactionUsecase
   constructor(private financialTransactionRepository: FinancialTransactionRepository) {}
 
   execute(params: FinancialTransactionModel): Observable<FinancialTransactionModel> {
-    console.log('teste 2');
+    console.log('teste 2 Singular');
     return this.financialTransactionRepository.postFinancialTransaction(params);
   }
 }

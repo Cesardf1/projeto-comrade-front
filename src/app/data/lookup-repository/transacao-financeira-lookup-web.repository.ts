@@ -20,7 +20,9 @@ export class FinancialTransactionLookupWebRepository extends FinancialTransactio
 
   GetAll(): Observable<LookupModel[]> {
     return this.http
-      .getAll<LookupWebEntity[]>(`${environment.FILEUPLOAD}common/lookup-financial-transaction`)
+      .getAll<LookupWebEntity[]>(
+        `${environment.REGISTERTRANSACTION}common/lookup-financial-transaction`
+      )
       .pipe(
         map((item) => {
           return item.data;
@@ -36,7 +38,7 @@ export class FinancialTransactionLookupWebRepository extends FinancialTransactio
   GetAllByName(nome: string): Observable<LookupModel[]> {
     return this.http
       .getAll<LookupWebEntity[]>(
-        `${environment.FILEUPLOAD}common/lookup-predicate-financial-transaction-by-name/${nome}`
+        `${environment.REGISTERTRANSACTION}common/lookup-predicate-financial-transaction-by-name/${nome}`
       )
       .pipe(
         map((item) => {

@@ -11,7 +11,7 @@ import { PageResultModel } from 'src/app/core/utils/responses/page-result.model'
 import { PageFilterModel } from 'src/app/core/utils/filters/page-filter.model';
 import { makeParamFilterGrid } from '../../helper.repository';
 import { SingleResultModel } from '../../../core/utils/responses/single-result.model';
-import { FinancialTransactionModel } from 'src/app/core/models/financial-transaction.model';
+import { FinancialTransactionManyModel } from 'src/app/core/models/financial-transaction-many.model';
 
 @Injectable({
   providedIn: 'root',

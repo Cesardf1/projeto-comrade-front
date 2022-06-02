@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UseCase } from '../../utils/bases/use-case';
 import { Observable } from 'rxjs';
-import { FinancialTransactionModel } from '../../models/financial-transaction.model';
+import { FinancialTransactionManyModel } from '../../models/financial-transaction-many.model';
 import { FinancialTransactionRepository } from '../../repositories/financial-transaction.repository';
 import { SingleResultModel } from '../../utils/responses/single-result.model';
 
@@ -9,11 +9,11 @@ import { SingleResultModel } from '../../utils/responses/single-result.model';
   providedIn: 'root',
 })
 export class GetFinancialTransactionByIdUsecase
-  implements UseCase<number, SingleResultModel<FinancialTransactionModel>>
+  implements UseCase<number, SingleResultModel<FinancialTransactionManyModel>>
 {
   constructor(private systemUserRepository: FinancialTransactionRepository) {}
 
-  execute(id: number): Observable<SingleResultModel<FinancialTransactionModel>> {
+  execute(id: number): Observable<SingleResultModel<FinancialTransactionManyModel>> {
     return this.systemUserRepository.getFinancialTransactionById(id);
   }
 }

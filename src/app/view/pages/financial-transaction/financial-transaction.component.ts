@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAllFinancialTransactionUsecase } from '../../../core/usecases/financial-transaction/get-all-financial-transaction.usecase';
-import { PageResultModel } from '../../../core/utils/responses/page-result.model';
+import { PostManyFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/post-many-financial-transaction.usecase';
 import { PostFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/post-financial-transaction.usecase';
-import { FinancialTransactionModel } from 'src/app/core/models/financial-transaction.model';
+import { FinancialTransactionManyModel } from 'src/app/core/models/financial-transaction-many.model';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import { FinancialTransactionModel } from 'src/app/core/models/financial-transaction.model';
 
 @Component({
   selector: 'app-financial-transaction',
@@ -14,20 +14,29 @@ import { FormBuilder } from '@angular/forms';
 })
 export class FinancialTransactionComponent implements OnInit {
   fileName = '';
-  dataSource!: FinancialTransactionModel[];
-  data?: FinancialTransactionModel;
-  testLines: string[] = [];
+  dataSource!: FinancialTransactionManyModel[];
+  infoArray?: FinancialTransactionManyModel;
+  info?: FinancialTransactionModel;
+
+  formString = '';
+
   constructor(
-    private getAllFinancialTransaction: GetAllFinancialTransactionUsecase,
+    private postManyFinancialTransactionUseCase: PostManyFinancialTransactionUsecase,
     private postFinancialTransactionUseCase: PostFinancialTransactionUsecase,
     private http: HttpClient
   ) {}
 
   lines?: any;
 
-  checkoutForm = this.formBuilder.group({
-    name: '',
-    address: '',
+  formTransaction = new FormGroup({
+    tipo: new FormControl(''),
+    data: new FormControl(''),
+    valor: new FormControl(''),
+    cpf: new FormControl(''),
+    cartao: new FormControl(''),
+    hora: new FormControl(''),
+    donoDaLoja: new FormControl(''),
+    nomeDaLoja: new FormControl(''),
   });
 
   ngOnInit(): void {}
@@ -62,16 +71,27 @@ export class FinancialTransactionComponent implements OnInit {
   }
 
   PostFile() {
-    this.data = {
+    this.infoArray = {
       name: this.lines,
     };
     console.log('teste 1');
-    this.postFinancialTransactionUseCase.execute(this.data).subscribe();
+    this.postManyFinancialTransactionUseCase.execute(this.infoArray).subscribe();
+  }
 
-    this.getAllFinancialTransaction
-      .execute({ pageSize: 20, pageNumber: 1 })
-      .subscribe((grid: PageResultModel<FinancialTransactionModel>) => {
-        this.dataSource = grid.data!;
-      });
+  onSubmit() {
+   
+    this.info = {
+      tipo: this.formTransaction.get('tipo')?.value,
+      data: this.formTransaction.get('data')?.value,
+      valor: this.formTransaction.get('valor')?.value,
+      cpf: this.formTransaction.get('cpf')?.value,
+      cartao: this.formTransaction.get('cartao')?.value,
+      hora: this.formTransaction.get('hora')?.value,
+      donoDaLoja: this.formTransaction.get('donoDaLoja')?.value,
+      nomeDaLoja: this.formTransaction.get('nomeDaLoja')?.value
+    };
+    console.log("onSubmit");
+    console.log(this.info);
+    this.postFinancialTransactionUseCase.execute(this.info).subscribe();
   }
 }

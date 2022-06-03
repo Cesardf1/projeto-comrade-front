@@ -11,7 +11,7 @@ export abstract class FinancialTransactionRepository {
   ): Observable<SingleResultModel<FinancialTransactionManyModel>>;
   abstract getAllFinancialTransaction(
     filter: PageFilterModel
-  ): Observable<PageResultModel<FinancialTransactionManyModel>>;
+  ): Observable<PageResultModel<FinancialTransactionModel>>;
   abstract postManyFinancialTransaction(
     param: FinancialTransactionManyModel
   ): Observable<FinancialTransactionManyModel>;

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PostManyFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/post-many-financial-transaction.usecase';
 import { PostFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/post-financial-transaction.usecase';
+import { GetAllFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/get-all-financial-transaction.usecase';
 import { FinancialTransactionManyModel } from 'src/app/core/models/financial-transaction-many.model';
+import { PageFilterModel } from 'src/app/core/utils/filters/page-filter.model';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FinancialTransactionModel } from 'src/app/core/models/financial-transaction.model';
+import { PageResultModel } from 'src/app/core/utils/responses/page-result.model';
 
 @Component({
   selector: 'app-financial-transaction',
@@ -14,19 +17,24 @@ import { FinancialTransactionModel } from 'src/app/core/models/financial-transac
 })
 export class FinancialTransactionComponent implements OnInit {
   fileName = '';
-  dataSource!: FinancialTransactionManyModel[];
+  dataSource!: FinancialTransactionModel[];
   infoArray?: FinancialTransactionManyModel;
   info?: FinancialTransactionModel;
+  pageModel?: PageFilterModel;
+  InfoFromGet?: PageResultModel<FinancialTransactionModel>;
 
   formString = '';
 
   constructor(
     private postManyFinancialTransactionUseCase: PostManyFinancialTransactionUsecase,
     private postFinancialTransactionUseCase: PostFinancialTransactionUsecase,
-    private http: HttpClient
+    private getAllFinancialTransactionUseCase: GetAllFinancialTransactionUsecase    
   ) {}
 
   lines?: any;
+
+  
+  
 
   formTransaction = new FormGroup({
     tipo: new FormControl(''),
@@ -90,8 +98,17 @@ export class FinancialTransactionComponent implements OnInit {
       donoDaLoja: this.formTransaction.get('donoDaLoja')?.value,
       nomeDaLoja: this.formTransaction.get('nomeDaLoja')?.value
     };
-    console.log("onSubmit");
-    console.log(this.info);
     this.postFinancialTransactionUseCase.execute(this.info).subscribe();
+ 
   }
+  getButton(){
+    this.getAllFinancialTransactionUseCase.execute({ pageSize: 20, pageNumber: 1 })
+    .subscribe((grid: PageResultModel<FinancialTransactionModel>) => {
+      console.log(grid.data);
+      this.dataSource = grid.data!;
+    })
+  }
+  
 }
+
+  

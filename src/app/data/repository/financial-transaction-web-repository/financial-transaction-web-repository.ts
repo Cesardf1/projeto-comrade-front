@@ -40,16 +40,16 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
 
   getAllFinancialTransaction(
     filter: PageFilterModel
-  ): Observable<PageResultModel<FinancialTransactionManyModel>> {
+  ): Observable<PageResultModel<FinancialTransactionModel>> {
     var request = this.http
-      .getAll<PageResultModel<FinancialTransactionManyWebEntity>>(
+      .getAll<PageResultModel<FinancialTransactionWebEntity>>(
         `${environment.REGISTERTRANSACTION}financial-transaction/get-all${makeParamFilterGrid(
           filter
         )}`
       )
       .pipe(
         map((x) => {
-          return this.mapperMany.responseGridWebMapFrom(x.data);
+          return this.mapper.responseGridWebMapFrom(x.data);
         })
       );
     return request;

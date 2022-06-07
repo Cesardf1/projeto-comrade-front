@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostManyFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/post-many-financial-transaction.usecase';
+import { DeleteFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/delete-financial-transaction.usecase';
 import { PostFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/post-financial-transaction.usecase';
 import { GetAllFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/get-all-financial-transaction.usecase';
 import { FinancialTransactionManyModel } from 'src/app/core/models/financial-transaction-many.model';
@@ -28,13 +29,11 @@ export class FinancialTransactionComponent implements OnInit {
   constructor(
     private postManyFinancialTransactionUseCase: PostManyFinancialTransactionUsecase,
     private postFinancialTransactionUseCase: PostFinancialTransactionUsecase,
-    private getAllFinancialTransactionUseCase: GetAllFinancialTransactionUsecase    
+    private getAllFinancialTransactionUseCase: GetAllFinancialTransactionUsecase,
+    private deleteFinancialTransactionUseCase: DeleteFinancialTransactionUsecase
   ) {}
 
   lines?: any;
-
-  
-  
 
   formTransaction = new FormGroup({
     tipo: new FormControl(''),
@@ -87,7 +86,6 @@ export class FinancialTransactionComponent implements OnInit {
   }
 
   onSubmit() {
-   
     this.info = {
       tipo: this.formTransaction.get('tipo')?.value,
       data: this.formTransaction.get('data')?.value,
@@ -96,19 +94,22 @@ export class FinancialTransactionComponent implements OnInit {
       cartao: this.formTransaction.get('cartao')?.value,
       hora: this.formTransaction.get('hora')?.value,
       donoDaLoja: this.formTransaction.get('donoDaLoja')?.value,
-      nomeDaLoja: this.formTransaction.get('nomeDaLoja')?.value
+      nomeDaLoja: this.formTransaction.get('nomeDaLoja')?.value,
     };
     this.postFinancialTransactionUseCase.execute(this.info).subscribe();
- 
   }
-  getButton(){
-    this.getAllFinancialTransactionUseCase.execute({ pageSize: 20, pageNumber: 1 })
-    .subscribe((grid: PageResultModel<FinancialTransactionModel>) => {
-      console.log(grid.data);
-      this.dataSource = grid.data!;
-    })
-  }
-  
-}
 
-  
+  getButton() {
+    this.getAllFinancialTransactionUseCase
+      .execute({ pageSize: 20, pageNumber: 1 })
+      .subscribe((grid: PageResultModel<FinancialTransactionModel>) => {
+        console.log(grid.data);
+        this.dataSource = grid.data!;
+      });
+  }
+
+  testeCesar(oto: string): void {
+    console.log(oto);
+    this.deleteFinancialTransactionUseCase.execute();
+  }
+}

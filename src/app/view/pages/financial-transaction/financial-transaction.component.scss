@@ -22,3 +22,6 @@ form input {
 .button {
   width: 20%;
 }
+::ng-deep #data-grid-demo {
+  min-height: 530px;
+}

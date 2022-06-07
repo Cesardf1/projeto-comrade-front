@@ -6,7 +6,7 @@ import { FinancialTransactionRepository } from '../../repositories/financial-tra
 @Injectable({
   providedIn: 'root',
 })
-export class DeleteFinancialTransactionUsercase implements UseCase<number, void> {
+export class DeleteFinancialTransactionUsecase implements UseCase<number, void> {
   constructor(private financialTransactionRepository: FinancialTransactionRepository) {}
 
   execute(id: number): Observable<void> {

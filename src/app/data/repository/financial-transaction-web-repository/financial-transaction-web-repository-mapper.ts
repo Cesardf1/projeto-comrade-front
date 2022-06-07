@@ -8,26 +8,28 @@ export class FinancialTransactionWebRepositoryMapper extends Mapper<
 > {
   mapFrom(param: FinancialTransactionWebEntity): FinancialTransactionModel {
     return {
-      tipo : param.tipo,
-      data :param.data,
-      valor :param.valor,
-      cpf :param.cpf,
-      cartao :param.cartao,
-      hora :param.hora,
-      donoDaLoja :param.donoDaLoja,
-      nomeDaLoja :param.nomeDaLoja
+      id: param.id,
+      tipo: param.tipo,
+      data: param.data,
+      valor: param.valor,
+      cpf: param.cpf,
+      cartao: param.cartao,
+      hora: param.hora,
+      donoDaLoja: param.donoDaLoja,
+      nomeDaLoja: param.nomeDaLoja,
     };
   }
   mapTo(param: FinancialTransactionModel): FinancialTransactionWebEntity {
     return {
-      tipo : param.tipo,
-      data :param.data,
-      valor :param.valor,
-      cpf :param.cpf,
-      cartao :param.cartao,
-      hora :param.hora,
-      donoDaLoja :param.donoDaLoja,
-      nomeDaLoja :param.nomeDaLoja
+      id: param.id,
+      tipo: param.tipo,
+      data: param.data,
+      valor: param.valor,
+      cpf: param.cpf,
+      cartao: param.cartao,
+      hora: param.hora,
+      donoDaLoja: param.donoDaLoja,
+      nomeDaLoja: param.nomeDaLoja,
     };
   }
 }

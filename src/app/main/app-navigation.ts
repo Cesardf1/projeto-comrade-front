@@ -33,4 +33,9 @@ export const navigation = [
     path: '/financial-transaction',
     icon: 'folder',
   },
+  {
+    text: 'Bank',
+    path: '/bank',
+    icon: 'folder',
+  },
 ];

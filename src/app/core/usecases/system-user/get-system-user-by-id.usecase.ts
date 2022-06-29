@@ -13,7 +13,7 @@ export class GetSystemUserByIdUsecase
 {
   constructor(private systemUserRepository: SystemUserRepository) {}
 
-  execute(id: number): Observable<SingleResultModel<SystemUserModel>> {
+  execute(id: string): Observable<SingleResultModel<SystemUserModel>> {
     return this.systemUserRepository.getSystemUserById(id);
   }
 }

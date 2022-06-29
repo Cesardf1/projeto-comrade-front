@@ -7,7 +7,7 @@ import { SingleResultModel } from '../utils/responses/single-result.model';
 
 export abstract class FinancialTransactionRepository {
   abstract getFinancialTransactionById(
-    id: number
+    id: string
   ): Observable<SingleResultModel<FinancialTransactionManyModel>>;
   abstract getAllFinancialTransaction(
     filter: PageFilterModel
@@ -18,6 +18,6 @@ export abstract class FinancialTransactionRepository {
   abstract postFinancialTransaction(
     param: FinancialTransactionModel
   ): Observable<FinancialTransactionModel>;
-  abstract putFinancialTransaction(param: FinancialTransactionManyModel): Observable<void>;
-  abstract deleteFinancialTransaction(id: number): Observable<void>;
+  abstract putFinancialTransaction(param: FinancialTransactionModel): Observable<void>;
+  abstract deleteFinancialTransaction(id: string): Observable<void>;
 }

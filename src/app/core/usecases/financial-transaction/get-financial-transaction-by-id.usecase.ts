@@ -9,11 +9,11 @@ import { SingleResultModel } from '../../utils/responses/single-result.model';
   providedIn: 'root',
 })
 export class GetFinancialTransactionByIdUsecase
-  implements UseCase<number, SingleResultModel<FinancialTransactionManyModel>>
+  implements UseCase<string, SingleResultModel<FinancialTransactionManyModel>>
 {
   constructor(private systemUserRepository: FinancialTransactionRepository) {}
 
-  execute(id: number): Observable<SingleResultModel<FinancialTransactionManyModel>> {
+  execute(id: string): Observable<SingleResultModel<FinancialTransactionManyModel>> {
     return this.systemUserRepository.getFinancialTransactionById(id);
   }
 }

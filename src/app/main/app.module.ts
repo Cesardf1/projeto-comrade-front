@@ -40,6 +40,8 @@ import { SystemUserRepository } from '../core/repositories/system-user.repositor
 import { SystemUserWebRepository } from '../data/repository/system-user-web-repository/system-user-web.repository';
 import { FinancialTransactionRepository } from '../core/repositories/financial-transaction.repository';
 import { FinancialTransactionWebRepository } from '../data/repository/financial-transaction-web-repository/financial-transaction-web-repository';
+import { BankWebRepository } from '../data/repository/bank-web-repository/bank-web-repository';
+import { BankRepository } from '../core/repositories/bank.repository';
 export function getBaseHref(platformLocation: PlatformLocation): string {
   return platformLocation.getBaseHrefFromDOM();
 }
@@ -79,6 +81,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     { provide: AirplaneRepository, useClass: AirplaneWebRepository },
     { provide: SystemUserRepository, useClass: SystemUserWebRepository },
     { provide: FinancialTransactionRepository, useClass: FinancialTransactionWebRepository },
+    { provide: BankRepository, useClass: BankWebRepository },
     { provide: AuthenticationRepository, useClass: AuthenticationWebRepository },
     { provide: TokenRepository, useClass: TokenWebRepository },
     {

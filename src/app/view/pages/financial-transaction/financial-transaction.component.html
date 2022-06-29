@@ -6,68 +6,47 @@
   <button mat-mini-fab color="primary" class="upload-btn" (click)="input.click()">
     <mat-icon style="width: 60px">attach_file</mat-icon>
   </button>
-</div>
-<form [formGroup]="formTransaction" (ngSubmit)="onSubmit()">
+
   <div>
-    <label for="Tipo">Tipo: </label>
-    <input id="tipo" type="text" formControlName="tipo" />
-    <label for="Data">Data: </label>
-    <input id="data" type="text" formControlName="data" />
-    <label for="Valor">Valor: </label>
-    <input id="valor" type="text" formControlName="valor" />
-    <label for="CPF">CPF: </label>
-    <input id="cpf" type="text" formControlName="cpf" />
-  </div>
-  <div>
-    <label for="Cartao">Cartao: </label>
-    <input id="cartao" type="text" formControlName="cartao" />
-    <label for="Hora">Hora: </label>
-    <input id="hora" type="text" formControlName="hora" />
-    <label for="DonoDaLoja">Dono da Loja: </label>
-    <input id="donoDaLoja" type="text" formControlName="donoDaLoja" />
-    <label for="NomeDaLoja">Nome Da Loja: </label>
-    <input id="nomeDaLoja" type="text" formControlName="nomeDaLoja" />
+    <button (click)="getButton()">GET</button>
   </div>
 
-  <button type="submit" [disabled]="!formTransaction.valid">Submit</button>
-</form>
-<div>
-  <button (click)="getButton()">GET</button>
-</div>
+  <div id="data-grid">
+    <dx-data-grid
+      id="gridContainer"
+      [dataSource]="dataSource"
+      keyExpr="id"
+      [showBorders]="true"
+      (onRowRemoving)="deleteRow($event)"
+      (onRowUpdated)="editRow($event)"
+      (onRowInserted)="addRow($event)"
+    >
+      <dxo-paging [enabled]="true"></dxo-paging>
+      <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
+        <dxo-popup title="Transaction Info" [showTitle]="true" [width]="700" [height]="525">
+        </dxo-popup>
+        <dxo-form>
+          <dxi-item itemType="group" [colCount]="1" [colSpan]="1">
+            <dxi-item dataField="tipo"></dxi-item>
+            <dxi-item dataField="data"></dxi-item>
+            <dxi-item dataField="valor"></dxi-item>
+            <dxi-item dataField="cpf"></dxi-item>
+            <dxi-item dataField="cartao"></dxi-item>
+            <dxi-item dataField="hora"></dxi-item>
+            <dxi-item dataField="donoDaLoja"></dxi-item>
+            <dxi-item dataField="nomeDaLoja"></dxi-item>
+          </dxi-item>
+        </dxo-form>
+      </dxo-editing>
 
-<div id="data-grid">
-  <dx-data-grid
-    id="gridContainer"
-    [dataSource]="dataSource"
-    keyExpr="id"
-    [showBorders]="true"
-    (onRowRemoving)="testeCesar('teste')"
-  >
-    <dxo-paging [enabled]="true"></dxo-paging>
-    <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
-      <dxo-popup title="Transaction Info" [showTitle]="true" [width]="700" [height]="525">
-      </dxo-popup>
-      <dxo-form>
-        <dxi-item itemType="group" [colCount]="1" [colSpan]="1">
-          <dxi-item dataField="tipo"></dxi-item>
-          <dxi-item dataField="data"></dxi-item>
-          <dxi-item dataField="valor"></dxi-item>
-          <dxi-item dataField="cpf"></dxi-item>
-          <dxi-item dataField="cartao"></dxi-item>
-          <dxi-item dataField="hora"></dxi-item>
-          <dxi-item dataField="donaDaLoja"></dxi-item>
-          <dxi-item dataField="nomeDaLoja"></dxi-item>
-        </dxi-item>
-      </dxo-form>
-    </dxo-editing>
-
-    <dxi-column dataField="tipo"></dxi-column>
-    <dxi-column dataField="data"></dxi-column>
-    <dxi-column dataField="valor"></dxi-column>
-    <dxi-column dataField="cpf"></dxi-column>
-    <dxi-column dataField="cartao"></dxi-column>
-    <dxi-column dataField="hora"></dxi-column>
-    <dxi-column dataField="donoDaLoja"></dxi-column>
-    <dxi-column dataField="nomeDaLoja"></dxi-column>
-  </dx-data-grid>
+      <dxi-column dataField="tipo"></dxi-column>
+      <dxi-column dataField="data"></dxi-column>
+      <dxi-column dataField="valor"></dxi-column>
+      <dxi-column dataField="cpf"></dxi-column>
+      <dxi-column dataField="cartao"></dxi-column>
+      <dxi-column dataField="hora"></dxi-column>
+      <dxi-column dataField="donoDaLoja"></dxi-column>
+      <dxi-column dataField="nomeDaLoja"></dxi-column>
+    </dx-data-grid>
+  </div>
 </div>

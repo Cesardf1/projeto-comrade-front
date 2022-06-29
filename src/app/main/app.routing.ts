@@ -33,6 +33,11 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'bank',
+    loadChildren: () => import('../view/pages/bank/bank.module').then((m) => m.BankModule),
+    canActivate: [AuthGuard],
+  },
 
   {
     path: 'system-user',

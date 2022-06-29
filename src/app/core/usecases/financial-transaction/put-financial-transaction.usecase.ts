@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { UseCase } from '../../utils/bases/use-case';
 import { Observable } from 'rxjs';
-import { FinancialTransactionManyModel } from '../../models/financial-transaction-many.model';
+import { FinancialTransactionModel } from '../../models/financial-transaction.model';
 import { FinancialTransactionRepository } from '../../repositories/financial-transaction.repository';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PutFinancialTransactionUsecase
-  implements UseCase<FinancialTransactionManyModel, void>
-{
-  constructor(private systemUserRepository: FinancialTransactionRepository) {}
+export class PutFinancialTransactionUsecase implements UseCase<FinancialTransactionModel, void> {
+  constructor(private financialTransactionRepository: FinancialTransactionRepository) {}
 
-  execute(params: FinancialTransactionManyModel): Observable<void> {
-    return this.systemUserRepository.putFinancialTransaction(params);
+  execute(params: FinancialTransactionModel): Observable<void> {
+    return this.financialTransactionRepository.putFinancialTransaction(params);
   }
 }

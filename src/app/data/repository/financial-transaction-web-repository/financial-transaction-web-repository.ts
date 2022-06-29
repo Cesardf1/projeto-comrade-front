@@ -27,7 +27,7 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
   }
 
   getFinancialTransactionById(
-    id: number
+    id: string
   ): Observable<SingleResultModel<FinancialTransactionManyModel>> {
     PageResultModel;
     return this.http
@@ -81,16 +81,16 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
     return request;
   }
 
-  putFinancialTransaction(param: FinancialTransactionManyModel) {
+  putFinancialTransaction(param: FinancialTransactionModel) {
     return this.http
       .put<void>(
         `${environment.REGISTERTRANSACTION}financial-transaction/edit`,
-        this.mapperMany.mapTo(param)
+        this.mapper.mapTo(param)
       )
       .pipe(map((x) => x.data));
   }
 
-  deleteFinancialTransaction(id: number): Observable<void> {
+  deleteFinancialTransaction(id: string): Observable<void> {
     return this.http
       .delete<void>(`${environment.REGISTERTRANSACTION}financial-transaction/delete/${id}`, id)
       .pipe(map((x) => x.data));

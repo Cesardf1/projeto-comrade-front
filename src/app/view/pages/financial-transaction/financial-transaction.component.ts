@@ -5,10 +5,11 @@ import { PostFinancialTransactionUsecase } from 'src/app/core/usecases/financial
 import { GetAllFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/get-all-financial-transaction.usecase';
 import { FinancialTransactionManyModel } from 'src/app/core/models/financial-transaction-many.model';
 import { PageFilterModel } from 'src/app/core/utils/filters/page-filter.model';
-import { HttpClient } from '@angular/common/http';
+
 import { FormGroup, FormControl } from '@angular/forms';
 import { FinancialTransactionModel } from 'src/app/core/models/financial-transaction.model';
 import { PageResultModel } from 'src/app/core/utils/responses/page-result.model';
+import { PutFinancialTransactionUsecase } from 'src/app/core/usecases/financial-transaction/put-financial-transaction.usecase';
 
 @Component({
   selector: 'app-financial-transaction',
@@ -29,6 +30,7 @@ export class FinancialTransactionComponent implements OnInit {
   constructor(
     private postManyFinancialTransactionUseCase: PostManyFinancialTransactionUsecase,
     private postFinancialTransactionUseCase: PostFinancialTransactionUsecase,
+    private putFinancialTransactionUseCase: PutFinancialTransactionUsecase,
     private getAllFinancialTransactionUseCase: GetAllFinancialTransactionUsecase,
     private deleteFinancialTransactionUseCase: DeleteFinancialTransactionUsecase
   ) {}
@@ -108,8 +110,31 @@ export class FinancialTransactionComponent implements OnInit {
       });
   }
 
-  testeCesar(oto: string): void {
-    console.log(oto);
-    this.deleteFinancialTransactionUseCase.execute();
+  deleteRow(e: any): void {
+    var rowIndex = e.component.getRowIndexByKey(e.key);
+
+    console.log(e);
+    this.deleteFinancialTransactionUseCase.execute(e.key).subscribe();
+  }
+
+  editRow(e: any): void {
+    console.log('EDIT');
+    this.putFinancialTransactionUseCase.execute(e.data).subscribe();
+  }
+
+  addRow(e: any): void {
+    console.log('ADD ROW');
+    this.info = {
+      //id: e.key,
+      tipo: e.data.tipo,
+      data: e.data.data,
+      valor: e.data.valor,
+      cpf: e.data.cpf,
+      cartao: e.data.cartao,
+      hora: e.data.hora,
+      donoDaLoja: e.data.donoDaLoja,
+      nomeDaLoja: e.data.nomeDaLoja,
+    };
+    this.postFinancialTransactionUseCase.execute(this.info).subscribe();
   }
 }

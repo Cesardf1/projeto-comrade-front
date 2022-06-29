@@ -2,7 +2,7 @@ export interface FinancialTransactionWebEntity {
   id?: string;
   tipo: string;
   data: string;
-  valor: string;
+  valor: number;
   cpf: string;
   cartao: string;
   hora: string;

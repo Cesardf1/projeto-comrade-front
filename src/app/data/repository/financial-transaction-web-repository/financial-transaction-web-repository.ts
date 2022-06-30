@@ -32,7 +32,7 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
     PageResultModel;
     return this.http
       .get<SingleResultModel<FinancialTransactionManyWebEntity>>(
-        `${environment.REGISTERTRANSACTION}financial-transaction/get-by-id`,
+        `${environment.FINANCIALTRANSACTION}financial-transaction/get-by-id`,
         id
       )
       .pipe(map((x) => this.mapperMany.responseWebMapFrom(x.data)));
@@ -43,7 +43,7 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
   ): Observable<PageResultModel<FinancialTransactionModel>> {
     var request = this.http
       .getAll<PageResultModel<FinancialTransactionWebEntity>>(
-        `${environment.REGISTERTRANSACTION}financial-transaction/get-all${makeParamFilterGrid(
+        `${environment.FINANCIALTRANSACTION}financial-transaction/get-all${makeParamFilterGrid(
           filter
         )}`
       )
@@ -59,7 +59,7 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
     console.log(param);
     var request = this.http
       .post<FinancialTransactionManyWebEntity>(
-        `${environment.REGISTERTRANSACTION}financial-transaction/register-many-transactions`,
+        `${environment.FINANCIALTRANSACTION}financial-transaction/register-many-transactions`,
         this.mapperMany.mapTo(param)
       )
       .pipe(map((x) => this.mapperMany.mapFrom(x.data)));
@@ -72,7 +72,7 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
     console.log('postSINGLE');
     var request = this.http
       .post<FinancialTransactionWebEntity>(
-        `${environment.REGISTERTRANSACTION}financial-transaction/register-transaction`,
+        `${environment.FINANCIALTRANSACTION}financial-transaction/register-transaction`,
         this.mapper.mapTo(param)
       )
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
@@ -84,7 +84,7 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
   putFinancialTransaction(param: FinancialTransactionModel) {
     return this.http
       .put<void>(
-        `${environment.REGISTERTRANSACTION}financial-transaction/edit`,
+        `${environment.FINANCIALTRANSACTION}financial-transaction/edit`,
         this.mapper.mapTo(param)
       )
       .pipe(map((x) => x.data));
@@ -92,7 +92,7 @@ export class FinancialTransactionWebRepository extends FinancialTransactionRepos
 
   deleteFinancialTransaction(id: string): Observable<void> {
     return this.http
-      .delete<void>(`${environment.REGISTERTRANSACTION}financial-transaction/delete/${id}`, id)
+      .delete<void>(`${environment.FINANCIALTRANSACTION}financial-transaction/delete/${id}`, id)
       .pipe(map((x) => x.data));
   }
 }

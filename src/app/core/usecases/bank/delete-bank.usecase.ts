@@ -7,9 +7,9 @@ import { BankRepository } from '../../repositories/bank.repository';
   providedIn: 'root',
 })
 export class DeleteBankUsecase implements UseCase<string, void> {
-  constructor(private financialTransactionRepository: BankRepository) {}
+  constructor(private bankRepository: BankRepository) {}
 
   execute(id: string): Observable<void> {
-    return this.financialTransactionRepository.deleteBank(id);
+    return this.bankRepository.deleteBank(id);
   }
 }

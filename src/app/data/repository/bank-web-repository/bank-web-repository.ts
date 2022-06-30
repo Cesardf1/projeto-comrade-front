@@ -46,7 +46,7 @@ export class BankWebRepository extends BankRepository {
   getBankById(id: string): Observable<SingleResultModel<BankModel>> {
     PageResultModel;
     return this.http
-      .get<SingleResultModel<BankWebEntity>>(`${environment.REGISTERTRANSACTION}bank/get-by-id`, id)
+      .get<SingleResultModel<BankWebEntity>>(`${environment.BANK}bank/get-by-id`, id)
       .pipe(map((x) => this.mapper.responseWebMapFrom(x.data)));
   }
 
@@ -62,9 +62,7 @@ export class BankWebRepository extends BankRepository {
     return scheduled([teste], asyncScheduler);
     var request = this.http
       .getAll<PageResultModel<BankWebEntity>>(
-        `${environment.REGISTERTRANSACTION}financial-transaction/get-all${makeParamFilterGrid(
-          filter
-        )}`
+        `${environment.BANK}financial-transaction/get-all${makeParamFilterGrid(filter)}`
       )
       .pipe(
         map((x) => {
@@ -78,7 +76,7 @@ export class BankWebRepository extends BankRepository {
     console.log(param);
     var request = this.http
       .post<BankWebEntity>(
-        `${environment.REGISTERTRANSACTION}bank/register-transactions`,
+        `${environment.BANK}bank/register-transactions`,
         this.mapper.mapTo(param)
       )
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
@@ -89,13 +87,13 @@ export class BankWebRepository extends BankRepository {
 
   putBank(param: BankModel) {
     return this.http
-      .put<void>(`${environment.REGISTERTRANSACTION}bank/edit`, this.mapper.mapTo(param))
+      .put<void>(`${environment.BANK}bank/edit`, this.mapper.mapTo(param))
       .pipe(map((x) => x.data));
   }
 
   deleteBank(id: string): Observable<void> {
     return this.http
-      .delete<void>(`${environment.REGISTERTRANSACTION}bank/delete/${id}`, id)
+      .delete<void>(`${environment.BANK}bank/delete/${id}`, id)
       .pipe(map((x) => x.data));
   }
 }

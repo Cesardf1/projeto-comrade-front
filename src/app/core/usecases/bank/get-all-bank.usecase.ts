@@ -10,9 +10,9 @@ import { BankRepository } from '../../repositories/bank.repository';
   providedIn: 'root',
 })
 export class GetAllBankUsecase implements UseCase<PageFilterModel, PageResultModel<BankModel>> {
-  constructor(private financialTransactionRepository: BankRepository) {}
+  constructor(private bankRepository: BankRepository) {}
 
   execute(filter: PageFilterModel): Observable<PageResultModel<BankModel>> {
-    return this.financialTransactionRepository.getAllBank(filter);
+    return this.bankRepository.getAllBank(filter);
   }
 }

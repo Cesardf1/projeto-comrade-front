@@ -3,6 +3,7 @@ import { BranchModel } from './branch.model';
 export interface BankModel {
   id?: string;
   name: string;
-  branchView?: string;
+  branchCodeView?: string;
+  branchAdressView?: string;
   branch: BranchModel[];
 }

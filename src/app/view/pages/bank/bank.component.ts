@@ -17,6 +17,7 @@ export class BankComponent implements OnInit {
   dataSource!: BankModel[];
   info?: BankModel;
   branchList: BranchModel[] = [];
+  isFieldVisible: boolean = false;
   constructor(
     private getAllBankUseCase: GetAllBankUsecase,
     private postBankUseCase: PostBankUsecase,
@@ -24,7 +25,9 @@ export class BankComponent implements OnInit {
     private deleteBankUseCase: DeleteBankUsecase
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isFieldVisible = false;
+  }
 
   getButton() {
     this.getAllBankUseCase
@@ -44,31 +47,44 @@ export class BankComponent implements OnInit {
 
   editRow(e: any): void {
     console.log('EDIT');
-    this.putBankUseCase.execute(e.data).subscribe();
+    this.info = {
+      id: e.key,
+      name: e.data.name,
+      branch: this.arrayToObject(e.data.branchCodeView, e.data.branchAdressView),
+    };
+    console.log(this.info);
+    this.putBankUseCase.execute(this.info).subscribe();
   }
 
   addRow(e: any): void {
     console.log('ADD ROW');
-    console.log(e.data.branchView);
+    console.log(e.data);
     this.info = {
       id: e.key,
       name: e.data.name,
-      branch: this.arrayToObject(e.data.branchView),
+      branch: this.arrayToObject(e.data.branchCodeView, e.data.branchAdressView),
     };
-    // this.postBankUseCase.execute(this.info).subscribe();
+    this.postBankUseCase.execute(this.info).subscribe();
     console.log(this.info);
     console.log(e.data);
+    console.log('BRANCH: ' + e.data.branch.code);
   }
 
-  arrayToObject(stringList: string): BranchModel[] {
+  arrayToObject(codeString: string, adressString: string): BranchModel[] {
+    console.log('arrayToObject:');
+
     let i = 0;
     let arr: BranchModel[] = [];
     let oto: string[] = [];
-    oto = (<string>(<unknown>stringList)).split(',');
+    let ota: string[] = [];
+    ota.push(adressString);
+    oto.push(codeString);
+    oto = (<string>(<unknown>codeString)).split(',');
+    ota = (<string>(<unknown>adressString)).split(',');
     for (i = 0; i < oto.length; i++) {
       let item: BranchModel = {
         code: oto[i],
-        adress: '-',
+        adress: ota[i],
       };
       arr.push(item);
     }

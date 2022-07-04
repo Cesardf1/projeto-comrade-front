@@ -31,6 +31,7 @@ export class BankWebRepository extends BankRepository {
   };
   mockTeste: BankModel = {
     name: 'Santander',
+    id: 'idTeste',
     branch: [this.mockBranch1, this.mockBranch2, this.mockBranch3],
   };
 
@@ -57,7 +58,9 @@ export class BankWebRepository extends BankRepository {
 
     teste.data.map((x) => {
       var oto = x.branch.flatMap((x) => x.code);
-      x.branchView = oto.join();
+      var ota = x.branch.flatMap((x) => x.adress);
+      x.branchCodeView = oto.join();
+      x.branchAdressView = ota.join();
     });
     return scheduled([teste], asyncScheduler);
     var request = this.http

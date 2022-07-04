@@ -1,28 +1,3 @@
-<!-- </div>
-<form [formGroup]="formTransaction" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="Tipo">Tipo: </label>
-    <input id="tipo" type="text" formControlName="tipo" />
-    <label for="Data">Data: </label>
-    <input id="data" type="text" formControlName="data" />
-    <label for="Valor">Valor: </label>
-    <input id="valor" type="text" formControlName="valor" />
-    <label for="CPF">CPF: </label>
-    <input id="cpf" type="text" formControlName="cpf" />
-  </div>
-  <div>
-    <label for="Cartao">Cartao: </label>
-    <input id="cartao" type="text" formControlName="cartao" />
-    <label for="Hora">Hora: </label>
-    <input id="hora" type="text" formControlName="hora" />
-    <label for="DonoDaLoja">Dono da Loja: </label>
-    <input id="donoDaLoja" type="text" formControlName="donoDaLoja" />
-    <label for="NomeDaLoja">Nome Da Loja: </label>
-    <input id="nomeDaLoja" type="text" formControlName="nomeDaLoja" />
-  </div>
-
-  <button type="submit" [disabled]="!formTransaction.valid">Submit</button>
-</form> -->
 <div>
   <button (click)="getButton()">GET</button>
 </div>
@@ -31,7 +6,7 @@
   <dx-data-grid
     id="gridContainer"
     [dataSource]="dataSource"
-    keyExpr="name"
+    keyExpr="id"
     [showBorders]="true"
     (onRowRemoving)="deleteRow($event)"
     (onRowUpdated)="editRow($event)"
@@ -44,13 +19,14 @@
       <dxo-form>
         <dxi-item itemType="group" [colCount]="1" [colSpan]="1">
           <dxi-item dataField="name"></dxi-item>
-          <dxi-item dataField="branchView"></dxi-item>
-          <dxi-item dataField="adress"></dxi-item>
+          <dxi-item dataField="branchCodeView"></dxi-item>
+          <dxi-item dataField="branchAdressView"></dxi-item>
         </dxi-item>
       </dxo-form>
     </dxo-editing>
 
     <dxi-column dataField="name"></dxi-column>
-    <dxi-column dataField="branchView" caption="Branch"></dxi-column>
+    <dxi-column dataField="branchCodeView" caption="Code"></dxi-column>
+    <dxi-column dataField="branchAdressView" [(visible)]="isFieldVisible"></dxi-column>
   </dx-data-grid>
 </div>

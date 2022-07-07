@@ -6,6 +6,7 @@ import { PostBankUsecase } from 'src/app/core/usecases/bank/post-bank.usecase';
 import { PutBankUsecase } from 'src/app/core/usecases/bank/put-bank.usecase';
 import { BankModel } from '../../../core/models/bank.model';
 import { PageResultModel } from '../../../core/utils/responses/page-result.model';
+import { DxFormModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-bank',
@@ -15,9 +16,11 @@ import { PageResultModel } from '../../../core/utils/responses/page-result.model
 })
 export class BankComponent implements OnInit {
   dataSource!: BankModel[];
+  dataSource2!: BankModel[];
   info?: BankModel;
   branchList: BranchModel[] = [];
   isFieldVisible: boolean = false;
+  mockArray: string[] = ['1', '2', '3'];
   constructor(
     private getAllBankUseCase: GetAllBankUsecase,
     private postBankUseCase: PostBankUsecase,
@@ -27,6 +30,7 @@ export class BankComponent implements OnInit {
 
   ngOnInit(): void {
     this.isFieldVisible = false;
+    this.getButton();
   }
 
   getButton() {
@@ -35,6 +39,7 @@ export class BankComponent implements OnInit {
       .subscribe((grid: PageResultModel<BankModel>) => {
         console.log(grid.data);
         this.dataSource = grid.data!;
+        this.dataSource2 = grid.data!;
       });
   }
 
@@ -90,4 +95,6 @@ export class BankComponent implements OnInit {
     }
     return arr;
   }
+
+  objectToArray() {}
 }

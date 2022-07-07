@@ -2,6 +2,10 @@
   <button (click)="getButton()">GET</button>
 </div>
 
+<div>
+  <dx-select-box [dataSource]="dataSource[0].name" displayExpr="text"> </dx-select-box>
+</div>
+
 <div id="data-grid">
   <dx-data-grid
     id="gridContainer"

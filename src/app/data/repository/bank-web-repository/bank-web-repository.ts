@@ -35,6 +35,24 @@ export class BankWebRepository extends BankRepository {
     branch: [this.mockBranch1, this.mockBranch2, this.mockBranch3],
   };
 
+  mockBranch4: BranchModel = {
+    adress: 'vila A',
+    code: '4021',
+  };
+  mockBranch5: BranchModel = {
+    adress: 'vila B',
+    code: '5491',
+  };
+  mockBranch6: BranchModel = {
+    adress: 'vila C',
+    code: '7853',
+  };
+  mockTeste2: BankModel = {
+    name: 'Nubank',
+    id: 'blabla',
+    branch: [this.mockBranch1, this.mockBranch2, this.mockBranch3],
+  };
+
   postManyBank(param: BankModel): Observable<BankModel> {
     throw new Error('Method not implemented.');
   }
@@ -54,7 +72,7 @@ export class BankWebRepository extends BankRepository {
   getAllBank(filter: PageFilterModel): Observable<PageResultModel<BankModel>> {
     let teste: PageResultModel<BankModel> = {};
 
-    teste.data = [this.mockTeste];
+    teste.data = [this.mockTeste, this.mockTeste2];
 
     teste.data.map((x) => {
       var oto = x.branch.flatMap((x) => x.code);

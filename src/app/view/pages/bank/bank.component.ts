@@ -20,7 +20,19 @@ export class BankComponent implements OnInit {
   info?: BankModel;
   branchList: BranchModel[] = [];
   isFieldVisible: boolean = false;
-  mockArray: string[] = ['1', '2', '3'];
+  mockBank: BankModel = {
+    name: 'Nubank',
+    branches: [
+      {
+        adress: 'Endereço1',
+        code: '1111',
+      },
+      {
+        adress: 'Endereço2',
+        code: '2222',
+      },
+    ],
+  };
   constructor(
     private getAllBankUseCase: GetAllBankUsecase,
     private postBankUseCase: PostBankUsecase,
@@ -55,7 +67,7 @@ export class BankComponent implements OnInit {
     this.info = {
       id: e.key,
       name: e.data.name,
-      branch: this.arrayToObject(e.data.branchCodeView, e.data.branchAdressView),
+      branches: this.arrayToObject(e.data.branchCodeView, e.data.branchAdressView),
     };
     console.log(this.info);
     this.putBankUseCase.execute(this.info).subscribe();
@@ -67,12 +79,12 @@ export class BankComponent implements OnInit {
     this.info = {
       id: e.key,
       name: e.data.name,
-      branch: this.arrayToObject(e.data.branchCodeView, e.data.branchAdressView),
+      branches: this.arrayToObject(e.data.branchCodeView, e.data.branchAdressView),
     };
     this.postBankUseCase.execute(this.info).subscribe();
     console.log(this.info);
     console.log(e.data);
-    console.log('BRANCH: ' + e.data.branch.code);
+    console.log('BRANCH: ' + e.data.branches.code);
   }
 
   arrayToObject(codeString: string, adressString: string): BranchModel[] {
@@ -96,5 +108,11 @@ export class BankComponent implements OnInit {
     return arr;
   }
 
-  objectToArray() {}
+  showInfo() {
+    console.log('TESTE');
+  }
+
+  postButton() {
+    this.postBankUseCase.execute(this.mockBank).subscribe();
+  }
 }

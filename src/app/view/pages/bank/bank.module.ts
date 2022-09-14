@@ -15,13 +15,24 @@ import {
   DxSelectBoxModule,
   DxTextAreaModule,
   DxFormComponent,
+  DxButtonModule,
+  DxPopupModule,
+  DxTemplateModule,
 } from 'devextreme-angular';
 import { BankRoutingModule } from './bank.routing';
 import { throwIfAlreadyLoaded } from '../../../services/guards/module-import.guard';
 import { BankComponent } from './bank.component';
 
 @NgModule({
-  imports: [DxDataGridModule, DxFormModule, DxSelectBoxModule, BankRoutingModule],
+  imports: [
+    DxDataGridModule,
+    DxFormModule,
+    DxSelectBoxModule,
+    BankRoutingModule,
+    DxPopupModule,
+    DxButtonModule,
+    DxTemplateModule,
+  ],
   exports: [],
   declarations: [BankComponent],
   providers: [],

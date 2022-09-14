@@ -3,7 +3,7 @@
 </div>
 
 <div>
-  <dx-select-box [dataSource]="dataSource[0].name" displayExpr="text"> </dx-select-box>
+  <button (click)="postButton()">POST</button>
 </div>
 
 <div id="data-grid">
@@ -17,7 +17,13 @@
     (onRowInserted)="addRow($event)"
   >
     <dxo-paging [enabled]="true"></dxo-paging>
-    <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
+    <dxo-editing
+      mode="popup"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+      [useIcons]="true"
+    >
       <dxo-popup title="Transaction Info" [showTitle]="true" [width]="700" [height]="525">
       </dxo-popup>
       <dxo-form>
@@ -25,6 +31,10 @@
           <dxi-item dataField="name"></dxi-item>
           <dxi-item dataField="branchCodeView"></dxi-item>
           <dxi-item dataField="branchAdressView"></dxi-item>
+          <dxi-item itemType="group" [colCount]="2" [colSpan]="1">
+            <dx-button class="button-info" icon="add" text="Details" (onClick)="showInfo()">
+            </dx-button>
+          </dxi-item>
         </dxi-item>
       </dxo-form>
     </dxo-editing>
@@ -32,5 +42,8 @@
     <dxi-column dataField="name"></dxi-column>
     <dxi-column dataField="branchCodeView" caption="Code"></dxi-column>
     <dxi-column dataField="branchAdressView" [(visible)]="isFieldVisible"></dxi-column>
+    <!-- <dxi-column type="buttons">
+      <dxi-button icon="add"></dxi-button>
+    </dxi-column> -->
   </dx-data-grid>
 </div>

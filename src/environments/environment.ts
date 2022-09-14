@@ -9,4 +9,5 @@ export const environment = {
   FINANCIALTRANSACTION: 'https://localhost:44304/api/v1/',
   SYSTEMUSER: 'https://localhost:44304/api/v1/',
   BANK: 'https://localhost:44304/api/v1/',
+  SYSTEMROLE: 'https://localhost:44304/api/v1/',
 };

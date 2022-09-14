@@ -6,14 +6,14 @@ export class BankWebRepositoryMapper extends Mapper<BankWebEntity, BankModel> {
   mapFrom(param: BankWebEntity): BankModel {
     return {
       id: param.id,
-      branch: param.branch,
+      branches: param.branches,
       name: param.name,
     };
   }
   mapTo(param: BankModel): BankWebEntity {
     return {
       id: param.id,
-      branch: param.branch,
+      branches: param.branches,
       name: param.name,
     };
   }

@@ -32,7 +32,7 @@ export class BankWebRepository extends BankRepository {
   mockTeste: BankModel = {
     name: 'Santander',
     id: 'idTeste',
-    branch: [this.mockBranch1, this.mockBranch2, this.mockBranch3],
+    branches: [this.mockBranch1, this.mockBranch2, this.mockBranch3],
   };
 
   mockBranch4: BranchModel = {
@@ -50,7 +50,7 @@ export class BankWebRepository extends BankRepository {
   mockTeste2: BankModel = {
     name: 'Nubank',
     id: 'blabla',
-    branch: [this.mockBranch1, this.mockBranch2, this.mockBranch3],
+    branches: [this.mockBranch1, this.mockBranch2, this.mockBranch3],
   };
 
   postManyBank(param: BankModel): Observable<BankModel> {
@@ -75,8 +75,8 @@ export class BankWebRepository extends BankRepository {
     teste.data = [this.mockTeste, this.mockTeste2];
 
     teste.data.map((x) => {
-      var oto = x.branch.flatMap((x) => x.code);
-      var ota = x.branch.flatMap((x) => x.adress);
+      var oto = x.branches.flatMap((x) => x.code);
+      var ota = x.branches.flatMap((x) => x.adress);
       x.branchCodeView = oto.join();
       x.branchAdressView = ota.join();
     });
@@ -96,10 +96,7 @@ export class BankWebRepository extends BankRepository {
   postBank(param: BankModel) {
     console.log(param);
     var request = this.http
-      .post<BankWebEntity>(
-        `${environment.BANK}bank/register-transactions`,
-        this.mapper.mapTo(param)
-      )
+      .post<BankWebEntity>(`${environment.BANK}bank/create`, this.mapper.mapTo(param))
       .pipe(map((x) => this.mapper.mapFrom(x.data)));
     request.subscribe();
 

@@ -5,5 +5,5 @@ export interface BankModel {
   name: string;
   branchCodeView?: string;
   branchAdressView?: string;
-  branch: BranchModel[];
+  branches: BranchModel[];
 }

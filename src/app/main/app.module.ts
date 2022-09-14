@@ -14,6 +14,8 @@ import { TokenWebRepository } from '../data/repository/token-web-reporitory/toke
 import { TokenRepository } from '../core/repositories/token.repository';
 import { SystemUserLookupRepository } from '../core/lookups/ba-usu-lookup/system-user-lookup.repository';
 import { SystemUserLookupWebRepository } from '../data/lookup-repository/usuario-sistema-lookup-web.repository';
+import { SystemRoleLookupRepository } from '../core/lookups/ba-usu-lookup/system-role-lookup.repository';
+import { SystemRoleLookupWebRepository } from '../data/lookup-repository/cargo-sistema-lookup-web.repository';
 import { FinancialTransactionLookupRepository } from '../core/lookups/ba-usu-lookup/financial-transaction-lookup.repository';
 import { FinancialTransactionLookupWebRepository } from '../data/lookup-repository/transacao-financeira-lookup-web.repository';
 import { AirplaneRepository } from '../core/repositories/airplane.repository';
@@ -38,6 +40,8 @@ import { GlobalErrorHandlerService } from '../services/handlers/global-error-han
 import { AuthInterceptor } from '../services/interceptors/auth.interceptor';
 import { SystemUserRepository } from '../core/repositories/system-user.repository';
 import { SystemUserWebRepository } from '../data/repository/system-user-web-repository/system-user-web.repository';
+import { SystemRoleRepository } from '../core/repositories/system-role.repository';
+import { SystemRoleWebRepository } from '../data/repository/system-role-web-repository/system-role-web.repository';
 import { FinancialTransactionRepository } from '../core/repositories/financial-transaction.repository';
 import { FinancialTransactionWebRepository } from '../data/repository/financial-transaction-web-repository/financial-transaction-web-repository';
 import { BankWebRepository } from '../data/repository/bank-web-repository/bank-web-repository';
@@ -80,6 +84,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     { provide: LocationStrategy, useClass: PathLocationStrategy },
     { provide: AirplaneRepository, useClass: AirplaneWebRepository },
     { provide: SystemUserRepository, useClass: SystemUserWebRepository },
+    { provide: SystemRoleRepository, useClass: SystemRoleWebRepository },
     { provide: FinancialTransactionRepository, useClass: FinancialTransactionWebRepository },
     { provide: BankRepository, useClass: BankWebRepository },
     { provide: AuthenticationRepository, useClass: AuthenticationWebRepository },
@@ -87,6 +92,10 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     {
       provide: FinancialTransactionLookupRepository,
       useClass: FinancialTransactionLookupWebRepository,
+    },
+    {
+      provide: SystemRoleLookupRepository,
+      useClass: SystemRoleLookupWebRepository,
     },
   ],
   bootstrap: [AppComponent],

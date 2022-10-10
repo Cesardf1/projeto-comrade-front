@@ -37,6 +37,41 @@ const routes: Routes = [
       import('../view/pages/system-user/system-user.module').then((m) => m.SystemUserModule),
     canActivate: [AuthGuard],
   },
+
+  {
+    path: 'system-role',
+    loadChildren: () =>
+      import('../view/pages/system-role/system-role.module').then((m) => m.SystemRoleModule),
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'system-permission',
+    loadChildren: () =>
+      import('../view/pages/system-permission/system-permission.module').then(
+        (m) => m.SystemPermissionModule
+      ),
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'system-user-role',
+    loadChildren: () =>
+      import('../view/pages/system-user-role/system-user-role.module').then(
+        (m) => m.SystemUserRoleModule
+      ),
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'system-user-permission',
+    loadChildren: () =>
+      import('../view/pages/system-user-permission/system-user-permission.module').then(
+        (m) => m.SystemUserPermissionModule
+      ),
+    canActivate: [AuthGuard],
+  },
+
   {
     path: 'login-form',
     component: LoginFormComponent,

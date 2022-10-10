@@ -7,14 +7,13 @@ import { EditSystemUserUsecase } from 'src/app/core/usecases/system-user/edit-sy
 import { CreateSystemUserUsecase } from 'src/app/core/usecases/system-user/create-system-user.usecase';
 
 @Component({
-  selector: 'app-system-user',
-  templateUrl: 'system-user.component.html',
-  styleUrls: ['system-user.component.scss'],
+  selector: 'app-system-user-role',
+  templateUrl: 'system-user-role.component.html',
+  styleUrls: ['system-user-role.component.scss'],
   providers: [],
 })
-export class SystemUserComponent implements OnInit {
+export class SystemUserPermissionComponent implements OnInit {
   dataSource!: SystemUserModel[];
-  filterValue!: Array<any>;
   constructor(
     private getAllSystemUser: GetAllSystemUserUsecase,
     private createSystemUser: CreateSystemUserUsecase,
@@ -28,21 +27,5 @@ export class SystemUserComponent implements OnInit {
       .subscribe((grid: PageResultModel<SystemUserModel>) => {
         this.dataSource = grid.data!;
       });
-  }
-
-  delete(e: any): void {
-    this.deleteSystemUser.execute(e.key).subscribe();
-  }
-
-  beforeSave(e: any): void {
-    e.data.registerDate = new Date();
-  }
-
-  save(e: any): void {
-    this.createSystemUser.execute(e.data).subscribe();
-  }
-
-  update(e: any): void {
-    this.editSystemUser.execute(e.data).subscribe();
   }
 }

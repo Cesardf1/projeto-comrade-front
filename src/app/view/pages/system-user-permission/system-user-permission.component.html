@@ -1,15 +1,11 @@
 <div id="data-grid-demo">
-  <dx-data-grid
-    id="gridContainer"
-    [dataSource]="dataSource"
-    keyExpr="id"
-    [showBorders]="true"
-    (onRowRemoving)="delete($event)"
-    (onRowUpdated)="update($event)"
-    (onRowInserted)="save($event)"
-  >
+  <dx-data-grid id="gridContainer" [dataSource]="dataSource" keyExpr="id" [showBorders]="true">
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+
     <dxo-paging [enabled]="true"></dxo-paging>
-    <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
+    <dxo-editing mode="popup">
       <dxo-popup title="Employee Info" [showTitle]="true" [width]="700" [height]="525"> </dxo-popup>
       <dxo-form>
         <dxi-item itemType="group" [colCount]="1" [colSpan]="1">
@@ -25,4 +21,6 @@
     <dxi-column dataField="registration"></dxi-column>
     <dxi-column dataField="registerDate"></dxi-column>
   </dx-data-grid>
+
+
 </div>

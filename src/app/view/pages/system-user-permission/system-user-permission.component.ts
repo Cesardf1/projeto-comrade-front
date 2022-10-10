@@ -5,21 +5,22 @@ import { DeleteSystemUserUsecase } from 'src/app/core/usecases/system-user/delet
 import { GetAllSystemUserUsecase } from 'src/app/core/usecases/system-user/get-all-system-user.usecase';
 import { EditSystemUserUsecase } from 'src/app/core/usecases/system-user/edit-system-user.usecase';
 import { CreateSystemUserUsecase } from 'src/app/core/usecases/system-user/create-system-user.usecase';
+import { ModalService } from '../../components/modal/modal.service';
 
 @Component({
-  selector: 'app-system-user',
-  templateUrl: 'system-user.component.html',
-  styleUrls: ['system-user.component.scss'],
+  selector: 'app-system-user-permission',
+  templateUrl: 'system-user-permission.component.html',
+  styleUrls: ['system-user-permission.component.scss'],
   providers: [],
 })
-export class SystemUserComponent implements OnInit {
+export class SystemUserPermissionComponent implements OnInit {
   dataSource!: SystemUserModel[];
-  filterValue!: Array<any>;
   constructor(
     private getAllSystemUser: GetAllSystemUserUsecase,
     private createSystemUser: CreateSystemUserUsecase,
     private deleteSystemUser: DeleteSystemUserUsecase,
-    private editSystemUser: EditSystemUserUsecase
+    private editSystemUser: EditSystemUserUsecase,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {

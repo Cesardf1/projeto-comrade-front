@@ -1,5 +1,5 @@
 export interface SystemPermissionModel {
-  id?: string;
+  id: string;
   name: string;
   tag: string;
 }

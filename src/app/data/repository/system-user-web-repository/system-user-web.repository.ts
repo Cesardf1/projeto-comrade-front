@@ -16,6 +16,11 @@ import { SystemUserSystemRoleWebEntity } from '../system-user-system-role-web-re
 import { SystemUserSystemRoleManageModel } from 'src/app/core/models/system-user-system-role-manage.model';
 import { SystemUserSystemRoleManageWebRepositoryMapper } from '../system-user-system-role-manage-web-repository/system-user-system-role-manage-web-repository-mapper';
 import { SystemUserSystemRoleWebRepositoryMapper } from '../system-user-system-role-web-repository/system-user-role-web-repository-mapper';
+import { SystemUserSystemPermissionModel } from 'src/app/core/models/system-user-system-permission.model';
+import { SystemUserSystemPermissionWebRepositoryMapper } from '../system-user-system-permission-web-repository/system-user-permission-web-repository-mapper';
+import { SystemUserSystemPermissionWebEntity } from '../system-user-system-permission-web-repository/system-user-system-permission-web-entity';
+import { SystemUserSystemPermissionManageWebRepositoryMapper } from '../system-user-system-permission-manage-web-repository copy/system-user-system-permission-manage-web-repository-mapper';
+import { SystemUserSystemPermissionManageModel } from 'src/app/core/models/system-user-system-permission-manage.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +28,9 @@ import { SystemUserSystemRoleWebRepositoryMapper } from '../system-user-system-r
 export class SystemUserWebRepository extends SystemUserRepository {
   mapper = new SystemUserWebRepositoryMapper();
   manageRolesMapper = new SystemUserSystemRoleManageWebRepositoryMapper();
+  managePermissionsMapper = new SystemUserSystemPermissionManageWebRepositoryMapper();
   systemUserSystemRoleMapper = new SystemUserSystemRoleWebRepositoryMapper();
+  systemUserSystemPermissionMapper = new SystemUserSystemPermissionWebRepositoryMapper();
 
   constructor(public http: BaseHttpService) {
     super();
@@ -91,6 +98,32 @@ export class SystemUserWebRepository extends SystemUserRepository {
       .put<void>(
         `${environment.SYSTEMUSER}system-user/manage-roles`,
         this.manageRolesMapper.mapTo(param)
+      )
+      .pipe(map((x) => x.data));
+  }
+
+  getAllWithPermissions(
+    filter: PageFilterModel
+  ): Observable<PageResultModel<SystemUserSystemPermissionModel>> {
+    var request = this.http
+      .getAll<PageResultModel<SystemUserSystemPermissionWebEntity>>(
+        `${environment.SYSTEMUSER}system-user/get-all-with-permissions${makeParamFilterGrid(
+          filter
+        )}`
+      )
+      .pipe(
+        map((x) => {
+          return this.systemUserSystemPermissionMapper.responseGridWebMapFrom(x.data);
+        })
+      );
+    return request;
+  }
+
+  managePermissions(param: SystemUserSystemPermissionManageModel) {
+    return this.http
+      .put<void>(
+        `${environment.SYSTEMUSER}system-user/manage-permissions`,
+        this.managePermissionsMapper.mapTo(param)
       )
       .pipe(map((x) => x.data));
   }

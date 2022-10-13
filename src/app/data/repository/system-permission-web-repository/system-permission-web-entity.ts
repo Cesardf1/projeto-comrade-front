@@ -1,5 +1,5 @@
 export interface SystemPermissionWebEntity {
-  id?: string;
+  id: string;
   name: string;
   tag: string;
 }

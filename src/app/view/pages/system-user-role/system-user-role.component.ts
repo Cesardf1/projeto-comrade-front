@@ -10,7 +10,9 @@ import { SystemRoleLookupByNameUsecase } from 'src/app/core/lookups/ba-usu-looku
 import { SystemUserSystemRoleModel } from 'src/app/core/models/system-user-system-role.model';
 import { SystemUserSystemRoleManageModel } from 'src/app/core/models/system-user-system-role-manage.model';
 import { PutSystemUserSystemRoleManageUsecase } from 'src/app/core/usecases/system-user-system-role-manage/put-system-user-system-role-manage.usecase';
-import { GetAllSystemUserWithRolesUsecase } from 'src/app/core/usecases/system-user-system-role/get-all-system-user-with-roles.usecase';
+import { GetAllSystemUserSystemRoleManageUsecase } from 'src/app/core/usecases/system-user-system-role-manage/get-all-system-user-system-role-manage.usecase';
+import { GetAllSystemUserWithRoleUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-role.usecase';
+import { ManageRolesUsecase } from 'src/app/core/usecases/system-user/manage-roles.usecase';
 
 @Component({
   selector: 'app-system-user-role',
@@ -19,7 +21,7 @@ import { GetAllSystemUserWithRolesUsecase } from 'src/app/core/usecases/system-u
   providers: [],
 })
 export class SystemUserRoleComponent implements OnInit {
-  dataSource!: SystemUserModel[];
+  dataSource!: SystemUserSystemRoleModel[];
   dataSourceAux: SystemUserSystemRoleModel[] = [];
   roles: SystemRoleModel[] = [];
   selectedSystemUser!: SystemUserSystemRoleModel;
@@ -28,9 +30,10 @@ export class SystemUserRoleComponent implements OnInit {
   popupVisible = false;
 
   constructor(
-    private getAllSystemUser: GetAllSystemUserWithRolesUsecase,
+    private getAllSystemUser: GetAllSystemUserUsecase,
+    private getAllSystemUserWithRoles: GetAllSystemUserWithRoleUsecase,
     private getAllSystemRole: GetAllSystemRoleUsecase,
-    private putSystemUserSystemRoleManageUseCase: PutSystemUserSystemRoleManageUsecase
+    private putSystemUserSystemRoleManageUseCase: ManageRolesUsecase
   ) {}
 
   handleCellClick(e: any) {
@@ -62,9 +65,9 @@ export class SystemUserRoleComponent implements OnInit {
   }
 
   getSystemUsers() {
-    this.getAllSystemUser
+    this.getAllSystemUserWithRoles
       .execute({ pageSize: 20, pageNumber: 1 })
-      .subscribe((grid: PageResultModel<SystemUserModel>) => {
+      .subscribe((grid: PageResultModel<SystemUserSystemRoleModel>) => {
         this.dataSource = grid.data!;
       });
   }
@@ -117,10 +120,10 @@ export class SystemUserRoleComponent implements OnInit {
   }
 
   addInDataSource() {
-    const indexOfObject = this.dataSourceAux.findIndex((object) => {
+    const indexOfObject = this.dataSource.findIndex((object) => {
       return object.id === this.selectedSystemUser.id;
     });
-    this.dataSourceAux[indexOfObject] = this.selectedSystemUser;
+    this.dataSource[indexOfObject] = this.selectedSystemUser;
   }
   putSystemUserSystemRoles() {
     let body: SystemUserSystemRoleManageModel = {

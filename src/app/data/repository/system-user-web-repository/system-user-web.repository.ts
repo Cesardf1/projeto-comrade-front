@@ -11,12 +11,19 @@ import { PageResultModel } from 'src/app/core/utils/responses/page-result.model'
 import { PageFilterModel } from 'src/app/core/utils/filters/page-filter.model';
 import { makeParamFilterGrid } from '../../helper.repository';
 import { SingleResultModel } from '../../../core/utils/responses/single-result.model';
+import { SystemUserSystemRoleModel } from 'src/app/core/models/system-user-system-role.model';
+import { SystemUserSystemRoleWebEntity } from '../system-user-system-role-web-repository/system-user-system-role-web-entity';
+import { SystemUserSystemRoleManageModel } from 'src/app/core/models/system-user-system-role-manage.model';
+import { SystemUserSystemRoleManageWebRepositoryMapper } from '../system-user-system-role-manage-web-repository/system-user-system-role-manage-web-repository-mapper';
+import { SystemUserSystemRoleWebRepositoryMapper } from '../system-user-system-role-web-repository/system-user-role-web-repository-mapper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SystemUserWebRepository extends SystemUserRepository {
   mapper = new SystemUserWebRepositoryMapper();
+  manageRolesMapper = new SystemUserSystemRoleManageWebRepositoryMapper();
+  systemUserSystemRoleMapper = new SystemUserSystemRoleWebRepositoryMapper();
 
   constructor(public http: BaseHttpService) {
     super();
@@ -63,6 +70,28 @@ export class SystemUserWebRepository extends SystemUserRepository {
   deleteSystemUser(id: string): Observable<void> {
     return this.http
       .delete<void>(`${environment.SYSTEMUSER}system-user/delete/${id}`, id)
+      .pipe(map((x) => x.data));
+  }
+
+  getAllWithRoles(filter: PageFilterModel): Observable<PageResultModel<SystemUserSystemRoleModel>> {
+    var request = this.http
+      .getAll<PageResultModel<SystemUserSystemRoleWebEntity>>(
+        `${environment.SYSTEMUSER}system-user/get-all-with-roles${makeParamFilterGrid(filter)}`
+      )
+      .pipe(
+        map((x) => {
+          return this.systemUserSystemRoleMapper.responseGridWebMapFrom(x.data);
+        })
+      );
+    return request;
+  }
+
+  manageRoles(param: SystemUserSystemRoleManageModel) {
+    return this.http
+      .put<void>(
+        `${environment.SYSTEMUSER}system-user/manage-roles`,
+        this.manageRolesMapper.mapTo(param)
+      )
       .pipe(map((x) => x.data));
   }
 }

@@ -6,17 +6,16 @@ import { PageResultModel } from '../../utils/responses/page-result.model';
 import { SystemUserModel } from '../../models/system-user.model';
 import { SystemUserRepository } from '../../repositories/system-user.repository';
 import { SystemUserSystemRoleModel } from '../../models/system-user-system-role.model';
-import { SystemUserSystemRoleRepository } from '../../repositories/system-user-system-role.repository';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetAllSystemUserWithRolesUsecase
+export class GetAllSystemUserWithRoleUsecase
   implements UseCase<PageFilterModel, PageResultModel<SystemUserSystemRoleModel>>
 {
-  constructor(private systemUserRoleRepository: SystemUserSystemRoleRepository) {}
+  constructor(private systemUserRepository: SystemUserRepository) {}
 
   execute(filter: PageFilterModel): Observable<PageResultModel<SystemUserSystemRoleModel>> {
-    return this.systemUserRoleRepository.getAllSystemUserSystemRole(filter);
+    return this.systemUserRepository.getAllWithRoles(filter);
   }
 }

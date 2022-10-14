@@ -6,7 +6,7 @@ import { GetAllSystemRoleUsecase } from 'src/app/core/usecases/system-role/get-a
 import { SystemUserSystemRoleModel } from 'src/app/core/models/system-user-system-role.model';
 import { SystemUserSystemRoleManageModel } from 'src/app/core/models/system-user-system-role-manage.model';
 import { GetAllSystemUserWithRolesUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-role.usecase';
-import { ManageRolesUsecase } from 'src/app/core/usecases/system-user/manage-roles.usecase';
+import { ManageSystemUserRolesUsecase } from 'src/app/core/usecases/system-user/manage-system-user-roles.usecase';
 
 @Component({
   selector: 'app-system-user-role',
@@ -25,7 +25,7 @@ export class SystemUserRoleComponent implements OnInit {
   constructor(
     private getAllSystemUserWithRoles: GetAllSystemUserWithRolesUsecase,
     private getAllSystemRole: GetAllSystemRoleUsecase,
-    private putSystemUserSystemRoleManageUseCase: ManageRolesUsecase
+    private putSystemUserSystemRoleManageUseCase: ManageSystemUserRolesUsecase
   ) {}
 
   ngOnInit(): void {
@@ -90,7 +90,6 @@ export class SystemUserRoleComponent implements OnInit {
       id: this.selectedSystemUser.id,
       roles: this.selectedSystemUser.systemRoles.map((role) => role.id),
     };
-    console.log(body);
     this.putSystemUserSystemRoleManageUseCase.execute(body).subscribe();
   }
 }

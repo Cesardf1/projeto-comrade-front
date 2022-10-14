@@ -5,7 +5,7 @@ import { GetAllSystemPermissionUsecase } from 'src/app/core/usecases/system-perm
 import { SystemRoleSystemPermissionModel } from 'src/app/core/models/system-role-system-permission.model';
 import { SystemRoleSystemPermissionManageModel } from 'src/app/core/models/system-role-system-permission-manage.model';
 import { GetAllSystemRoleWithPermissionUsecase } from 'src/app/core/usecases/system-role/get-all-system-role-with-permission.usecase';
-import { ManagePermissionsUsecase } from 'src/app/core/usecases/system-role/manage-permissions.usecase';
+import { ManageSystemRolePermissionsUsecase } from 'src/app/core/usecases/system-role/manage-system-role-permissions.usecase';
 
 @Component({
   selector: 'app-system-role-permission',
@@ -24,7 +24,7 @@ export class SystemRolePermissionComponent implements OnInit {
   constructor(
     private getAllSystemRoleWithPermissions: GetAllSystemRoleWithPermissionUsecase,
     private getAllSystemPermission: GetAllSystemPermissionUsecase,
-    private putSystemRoleSystemPermissionManageUseCase: ManagePermissionsUsecase
+    private putSystemRoleSystemPermissionManageUseCase: ManageSystemRolePermissionsUsecase
   ) {}
 
   ngOnInit(): void {

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PageResultModel } from 'src/app/core/utils/responses/page-result.model';
 import { SystemPermissionModel } from 'src/app/core/models/system-permission.model';
-import { GetAllSystemUserUsecase } from 'src/app/core/usecases/system-user/get-all-system-user.usecase';
 import { GetAllSystemPermissionUsecase } from 'src/app/core/usecases/system-permission/get-all-system-permission.usecase';
 import { SystemUserSystemPermissionModel } from 'src/app/core/models/system-user-system-permission.model';
 import { SystemUserSystemPermissionManageModel } from 'src/app/core/models/system-user-system-permission-manage.model';
-import { GetAllSystemUserWithPermissionUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-permission.usecase';
-import { ManagePermissionsUsecase } from 'src/app/core/usecases/system-user/manage-permissions.usecase';
+import { GetAllSystemUserWithPermissionsUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-permission.usecase';
+import { ManageSystemUserPermissionsUsecase } from 'src/app/core/usecases/system-user/manage-system-user-permissions.usecase';
 
 @Component({
   selector: 'app-system-user-permission',
@@ -23,9 +22,9 @@ export class SystemUserPermissionComponent implements OnInit {
   popupVisible = false;
 
   constructor(
-    private getAllSystemUserWithPermissions: GetAllSystemUserWithPermissionUsecase,
+    private getAllSystemUserWithPermissions: GetAllSystemUserWithPermissionsUsecase,
     private getAllSystemPermission: GetAllSystemPermissionUsecase,
-    private putSystemUserSystemPermissionManageUseCase: ManagePermissionsUsecase
+    private putSystemUserSystemPermissionManageUseCase: ManageSystemUserPermissionsUsecase
   ) {}
 
   ngOnInit(): void {

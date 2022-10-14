@@ -19,7 +19,7 @@ import { SystemUserSystemRoleWebRepositoryMapper } from '../system-user-system-r
 import { SystemUserSystemPermissionModel } from 'src/app/core/models/system-user-system-permission.model';
 import { SystemUserSystemPermissionWebRepositoryMapper } from '../system-user-system-permission-web-repository/system-user-permission-web-repository-mapper';
 import { SystemUserSystemPermissionWebEntity } from '../system-user-system-permission-web-repository/system-user-system-permission-web-entity';
-import { SystemUserSystemPermissionManageWebRepositoryMapper } from '../system-user-system-permission-manage-web-repository copy/system-user-system-permission-manage-web-repository-mapper';
+import { SystemUserSystemPermissionManageWebRepositoryMapper } from '../system-user-system-permission-manage-web-repository/system-user-system-permission-manage-web-repository-mapper';
 import { SystemUserSystemPermissionManageModel } from 'src/app/core/models/system-user-system-permission-manage.model';
 
 @Injectable({

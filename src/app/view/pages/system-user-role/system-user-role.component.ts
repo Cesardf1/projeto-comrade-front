@@ -5,7 +5,7 @@ import { GetAllSystemUserUsecase } from 'src/app/core/usecases/system-user/get-a
 import { GetAllSystemRoleUsecase } from 'src/app/core/usecases/system-role/get-all-system-role.usecase';
 import { SystemUserSystemRoleModel } from 'src/app/core/models/system-user-system-role.model';
 import { SystemUserSystemRoleManageModel } from 'src/app/core/models/system-user-system-role-manage.model';
-import { GetAllSystemUserWithRoleUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-role.usecase';
+import { GetAllSystemUserWithRolesUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-role.usecase';
 import { ManageRolesUsecase } from 'src/app/core/usecases/system-user/manage-roles.usecase';
 
 @Component({
@@ -16,7 +16,6 @@ import { ManageRolesUsecase } from 'src/app/core/usecases/system-user/manage-rol
 })
 export class SystemUserRoleComponent implements OnInit {
   dataSource!: SystemUserSystemRoleModel[];
-  dataSourceAux: SystemUserSystemRoleModel[] = [];
   roles: SystemRoleModel[] = [];
   selectedSystemUser!: SystemUserSystemRoleModel;
   toolbarOptions = { text: 'apply', onClick: () => this.applyButtonModal() };
@@ -24,8 +23,7 @@ export class SystemUserRoleComponent implements OnInit {
   popupVisible = false;
 
   constructor(
-    private getAllSystemUser: GetAllSystemUserUsecase,
-    private getAllSystemUserWithRoles: GetAllSystemUserWithRoleUsecase,
+    private getAllSystemUserWithRoles: GetAllSystemUserWithRolesUsecase,
     private getAllSystemRole: GetAllSystemRoleUsecase,
     private putSystemUserSystemRoleManageUseCase: ManageRolesUsecase
   ) {}

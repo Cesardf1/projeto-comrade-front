@@ -1,12 +1,11 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageResultModel } from 'src/app/core/utils/responses/page-result.model';
 import { SystemPermissionModel } from 'src/app/core/models/system-permission.model';
-import { GetAllSystemUserUsecase } from 'src/app/core/usecases/system-user/get-all-system-user.usecase';
 import { GetAllSystemPermissionUsecase } from 'src/app/core/usecases/system-permission/get-all-system-permission.usecase';
 import { SystemUserSystemPermissionModel } from 'src/app/core/models/system-user-system-permission.model';
 import { SystemUserSystemPermissionManageModel } from 'src/app/core/models/system-user-system-permission-manage.model';
-import { GetAllSystemUserWithPermissionUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-permission.usecase';
-import { ManagePermissionsUsecase } from 'src/app/core/usecases/system-user/manage-permissions.usecase';
+import { GetAllSystemUserWithPermissionsUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-permission.usecase';
+import { ManageSystemUserPermissionsUsecase } from 'src/app/core/usecases/system-user/manage-system-user-permissions.usecase';
 
 @Component({
   selector: 'app-system-user-permission',
@@ -16,7 +15,6 @@ import { ManagePermissionsUsecase } from 'src/app/core/usecases/system-user/mana
 })
 export class SystemUserPermissionComponent implements OnInit {
   dataSource!: SystemUserSystemPermissionModel[];
-  dataSourceAux: SystemUserSystemPermissionModel[] = [];
   permissions: SystemPermissionModel[] = [];
   selectedSystemUser!: SystemUserSystemPermissionModel;
   toolbarOptions = { text: 'apply', onClick: () => this.applyButtonModal() };
@@ -24,15 +22,11 @@ export class SystemUserPermissionComponent implements OnInit {
   popupVisible = false;
 
   constructor(
-    private getAllSystemUser: GetAllSystemUserUsecase,
-    private getAllSystemUserWithPermissions: GetAllSystemUserWithPermissionUsecase,
+    private getAllSystemUserWithPermissions: GetAllSystemUserWithPermissionsUsecase,
     private getAllSystemPermission: GetAllSystemPermissionUsecase,
-    private putSystemUserSystemPermissionManageUseCase: ManagePermissionsUsecase
+    private putSystemUserSystemPermissionManageUseCase: ManageSystemUserPermissionsUsecase
   ) {}
 
-  handleCellClick(e: any) {
-    console.log(e.data);
-  }
   ngOnInit(): void {
     this.getPermissions();
     this.getSystemUsers();
@@ -44,18 +38,15 @@ export class SystemUserPermissionComponent implements OnInit {
     );
   }
 
-  showInfo(e: any) {
+  showPopUpModal(e: any) {
     this.selectedSystemUser = JSON.parse(JSON.stringify(e.data));
     this.popupVisible = true;
-    console.log(this.selectedSystemUser);
-    console.log(e.data);
   }
 
   getPermissions() {
     this.getAllSystemPermission
       .execute({ pageSize: 20, pageNumber: 1 })
       .subscribe((grid: PageResultModel<SystemPermissionModel>) => {
-        console.log(grid.data);
         this.permissions = grid.data!;
       });
   }
@@ -84,6 +75,7 @@ export class SystemUserPermissionComponent implements OnInit {
 
   applyButtonModal() {
     this.addInDataSource();
+    this.putSystemUserSystemPermissions();
     this.popupVisible = false;
   }
 
@@ -96,9 +88,7 @@ export class SystemUserPermissionComponent implements OnInit {
   putSystemUserSystemPermissions() {
     let body: SystemUserSystemPermissionManageModel = {
       id: this.selectedSystemUser.id,
-      systemPermissions: this.selectedSystemUser.systemPermissions.map(
-        (permission) => permission.id
-      ),
+      Permissions: this.selectedSystemUser.systemPermissions.map((permission) => permission.id),
     };
     this.putSystemUserSystemPermissionManageUseCase.execute(body).subscribe();
   }

@@ -6,9 +6,9 @@ import {
   DxCheckBoxModule,
   DxSelectBoxModule,
 } from 'devextreme-angular';
-import { SystemUserPermissionRoutingModule } from './system-user-permission.routing';
+import { SystemRolePermissionRoutingModule } from './system-role-permission.routing';
 import { throwIfAlreadyLoaded } from '../../../services/guards/module-import.guard';
-import { SystemUserPermissionComponent } from './system-user-permission.component';
+import { SystemRolePermissionComponent } from './system-role-permission.component';
 import { ModalModule } from './../../components/modal/modal.module';
 import { CommonModule } from '@angular/common';
 
@@ -17,18 +17,18 @@ import { CommonModule } from '@angular/common';
     DxPopupModule,
     DxDataGridModule,
     DxFormModule,
-    SystemUserPermissionRoutingModule,
+    SystemRolePermissionRoutingModule,
     ModalModule,
     CommonModule,
     DxCheckBoxModule,
     DxSelectBoxModule,
   ],
   exports: [],
-  declarations: [SystemUserPermissionComponent],
+  declarations: [SystemRolePermissionComponent],
   providers: [],
 })
-export class SystemUserPermissionModule {
-  constructor(@Optional() @SkipSelf() parentModule: SystemUserPermissionModule) {
-    throwIfAlreadyLoaded(parentModule, 'SystemUserPermissionModule');
+export class SystemRolePermissionModule {
+  constructor(@Optional() @SkipSelf() parentModule: SystemRolePermissionModule) {
+    throwIfAlreadyLoaded(parentModule, 'SystemRolePermissionModule');
   }
 }

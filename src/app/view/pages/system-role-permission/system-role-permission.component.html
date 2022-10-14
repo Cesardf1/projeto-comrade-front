@@ -11,10 +11,7 @@
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-paging [enabled]="true"></dxo-paging>
     <dxi-column dataField="name" caption="Title"></dxi-column>
-    <dxi-column dataField="email"></dxi-column>
-    <dxi-column dataField="registration"></dxi-column>
-    <dxi-column dataField="registerDate"></dxi-column>
-    <dxi-column dataField="assignedRoles" [(visible)]="isRoleVisible"></dxi-column>
+    <dxi-column dataField="tag"></dxi-column>
   </dx-data-grid>
   <dx-popup
     [showTitle]="true"
@@ -24,12 +21,12 @@
     [showCloseButton]="true"
     [(visible)]="popupVisible"
   >
-    <dxi-item *ngIf="selectedSystemUser">
-      <div *ngFor="let role of roles">
+    <dxi-item *ngIf="selectedSystemRole">
+      <div *ngFor="let permission of permissions">
         <dx-check-box
-          [text]="role.name"
-          [value]="setValue(role)"
-          (onValueChanged)="handleValueChanged(role, $event)"
+          [text]="permission.name"
+          [value]="setValue(permission)"
+          (onValueChanged)="handleValueChanged(permission, $event)"
         ></dx-check-box>
       </div>
     </dxi-item>

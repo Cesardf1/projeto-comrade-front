@@ -6,7 +6,7 @@ import { GetAllSystemRoleUsecase } from 'src/app/core/usecases/system-role/get-a
 import { SystemUserSystemRoleModel } from 'src/app/core/models/system-user-system-role.model';
 import { SystemUserSystemRoleManageModel } from 'src/app/core/models/system-user-system-role-manage.model';
 import { GetAllSystemUserWithRolesUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-role.usecase';
-import { ManageRolesUsecase } from 'src/app/core/usecases/system-user/manage-roles.usecase';
+import { ManageSystemUserRolesUsecase } from 'src/app/core/usecases/system-user/manage-system-user-roles.usecase';
 
 @Component({
   selector: 'app-system-user-role',
@@ -25,12 +25,9 @@ export class SystemUserRoleComponent implements OnInit {
   constructor(
     private getAllSystemUserWithRoles: GetAllSystemUserWithRolesUsecase,
     private getAllSystemRole: GetAllSystemRoleUsecase,
-    private putSystemUserSystemRoleManageUseCase: ManageRolesUsecase
+    private putSystemUserSystemRoleManageUseCase: ManageSystemUserRolesUsecase
   ) {}
 
-  handleCellClick(e: any) {
-    console.log(e.data);
-  }
   ngOnInit(): void {
     this.getRoles();
     this.getSystemUsers();
@@ -40,11 +37,9 @@ export class SystemUserRoleComponent implements OnInit {
     return this.selectedSystemUser.systemRoles.some((systemRole) => role.id == systemRole.id);
   }
 
-  showInfo(e: any) {
+  showPopUpModal(e: any) {
     this.selectedSystemUser = JSON.parse(JSON.stringify(e.data));
     this.popupVisible = true;
-    console.log(this.selectedSystemUser);
-    console.log(e.data);
   }
 
   getRoles() {
@@ -80,6 +75,7 @@ export class SystemUserRoleComponent implements OnInit {
 
   applyButtonModal() {
     this.addInDataSource();
+    this.putSystemUserSystemRoles();
     this.popupVisible = false;
   }
 
@@ -92,7 +88,7 @@ export class SystemUserRoleComponent implements OnInit {
   putSystemUserSystemRoles() {
     let body: SystemUserSystemRoleManageModel = {
       id: this.selectedSystemUser.id,
-      systemRoles: this.selectedSystemUser.systemRoles.map((role) => role.id),
+      roles: this.selectedSystemUser.systemRoles.map((role) => role.id),
     };
     this.putSystemUserSystemRoleManageUseCase.execute(body).subscribe();
   }

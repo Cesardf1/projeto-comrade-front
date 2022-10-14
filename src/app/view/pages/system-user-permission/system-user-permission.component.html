@@ -4,7 +4,7 @@
     [dataSource]="dataSource"
     keyExpr="id"
     [showBorders]="true"
-    (onRowClick)="showInfo($event)"
+    (onRowClick)="showPopUpModal($event)"
   >
     <dxo-paging [pageSize]="10"></dxo-paging>
     <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>

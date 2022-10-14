@@ -1,4 +1,4 @@
 export interface SystemUserSystemPermissionManageModel {
   id?: string;
-  systemPermissions: string[];
+  Permissions: string[];
 }

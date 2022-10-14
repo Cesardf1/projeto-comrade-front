@@ -28,9 +28,6 @@ export class SystemUserRoleComponent implements OnInit {
     private putSystemUserSystemRoleManageUseCase: ManageRolesUsecase
   ) {}
 
-  handleCellClick(e: any) {
-    console.log(e.data);
-  }
   ngOnInit(): void {
     this.getRoles();
     this.getSystemUsers();
@@ -40,11 +37,9 @@ export class SystemUserRoleComponent implements OnInit {
     return this.selectedSystemUser.systemRoles.some((systemRole) => role.id == systemRole.id);
   }
 
-  showInfo(e: any) {
+  showPopUpModal(e: any) {
     this.selectedSystemUser = JSON.parse(JSON.stringify(e.data));
     this.popupVisible = true;
-    console.log(this.selectedSystemUser);
-    console.log(e.data);
   }
 
   getRoles() {

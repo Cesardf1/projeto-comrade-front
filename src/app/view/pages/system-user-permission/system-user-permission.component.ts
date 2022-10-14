@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageResultModel } from 'src/app/core/utils/responses/page-result.model';
 import { SystemPermissionModel } from 'src/app/core/models/system-permission.model';
 import { GetAllSystemUserUsecase } from 'src/app/core/usecases/system-user/get-all-system-user.usecase';
@@ -16,7 +16,6 @@ import { ManagePermissionsUsecase } from 'src/app/core/usecases/system-user/mana
 })
 export class SystemUserPermissionComponent implements OnInit {
   dataSource!: SystemUserSystemPermissionModel[];
-  dataSourceAux: SystemUserSystemPermissionModel[] = [];
   permissions: SystemPermissionModel[] = [];
   selectedSystemUser!: SystemUserSystemPermissionModel;
   toolbarOptions = { text: 'apply', onClick: () => this.applyButtonModal() };
@@ -24,15 +23,11 @@ export class SystemUserPermissionComponent implements OnInit {
   popupVisible = false;
 
   constructor(
-    private getAllSystemUser: GetAllSystemUserUsecase,
     private getAllSystemUserWithPermissions: GetAllSystemUserWithPermissionUsecase,
     private getAllSystemPermission: GetAllSystemPermissionUsecase,
     private putSystemUserSystemPermissionManageUseCase: ManagePermissionsUsecase
   ) {}
 
-  handleCellClick(e: any) {
-    console.log(e.data);
-  }
   ngOnInit(): void {
     this.getPermissions();
     this.getSystemUsers();
@@ -44,18 +39,15 @@ export class SystemUserPermissionComponent implements OnInit {
     );
   }
 
-  showInfo(e: any) {
+  showPopUpModal(e: any) {
     this.selectedSystemUser = JSON.parse(JSON.stringify(e.data));
     this.popupVisible = true;
-    console.log(this.selectedSystemUser);
-    console.log(e.data);
   }
 
   getPermissions() {
     this.getAllSystemPermission
       .execute({ pageSize: 20, pageNumber: 1 })
       .subscribe((grid: PageResultModel<SystemPermissionModel>) => {
-        console.log(grid.data);
         this.permissions = grid.data!;
       });
   }

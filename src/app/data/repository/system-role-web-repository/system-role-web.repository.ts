@@ -11,12 +11,19 @@ import { PageResultModel } from 'src/app/core/utils/responses/page-result.model'
 import { PageFilterModel } from 'src/app/core/utils/filters/page-filter.model';
 import { makeParamFilterGrid } from '../../helper.repository';
 import { SingleResultModel } from '../../../core/utils/responses/single-result.model';
+import { SystemRoleSystemPermissionModel } from 'src/app/core/models/system-role-system-permission.model';
+import { SystemRoleSystemPermissionManageModel } from 'src/app/core/models/system-role-system-permission-manage.model';
+import { SystemRoleSystemPermissionWebEntity } from '../system-role-system-permission-web-repository/system-role-system-permission-web-entity';
+import { SystemRoleSystemPermissionManageWebRepositoryMapper } from '../system-user-system-permission-manage-web-repository copy/system-role-system-permission-manage-web-repository-mapper';
+import { SystemRoleSystemPermissionWebRepositoryMapper } from '../system-role-system-permission-web-repository/system-role-permission-web-repository-mapper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SystemRoleWebRepository extends SystemRoleRepository {
   mapper = new SystemRoleWebRepositoryMapper();
+  systemRoleSystemPermissionMapper = new SystemRoleSystemPermissionWebRepositoryMapper();
+  managePermissionsMapper = new SystemRoleSystemPermissionManageWebRepositoryMapper();
 
   constructor(public http: BaseHttpService) {
     super();
@@ -63,6 +70,32 @@ export class SystemRoleWebRepository extends SystemRoleRepository {
   deleteSystemRole(id: string): Observable<void> {
     return this.http
       .delete<void>(`${environment.SYSTEMROLE}system-role/delete/${id}`, id)
+      .pipe(map((x) => x.data));
+  }
+
+  getAllWithPermissions(
+    filter: PageFilterModel
+  ): Observable<PageResultModel<SystemRoleSystemPermissionModel>> {
+    var request = this.http
+      .getAll<PageResultModel<SystemRoleSystemPermissionWebEntity>>(
+        `${environment.SYSTEMUSER}system-role/get-all-with-permissions${makeParamFilterGrid(
+          filter
+        )}`
+      )
+      .pipe(
+        map((x) => {
+          return this.systemRoleSystemPermissionMapper.responseGridWebMapFrom(x.data);
+        })
+      );
+    return request;
+  }
+
+  managePermissions(param: SystemRoleSystemPermissionManageModel) {
+    return this.http
+      .put<void>(
+        `${environment.SYSTEMUSER}system-role/manage-permissions`,
+        this.managePermissionsMapper.mapTo(param)
+      )
       .pipe(map((x) => x.data));
   }
 }

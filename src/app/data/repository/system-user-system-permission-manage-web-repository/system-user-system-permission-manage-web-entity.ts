@@ -1,4 +1,4 @@
 export interface SystemUserSystemPermissionManageWebEntity {
   id?: string;
-  systemPermissions: string[];
+  Permissions: string[];
 }

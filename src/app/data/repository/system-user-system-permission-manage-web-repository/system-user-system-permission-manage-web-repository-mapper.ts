@@ -8,14 +8,14 @@ export class SystemUserSystemPermissionManageWebRepositoryMapper extends Mapper<
   mapFrom(param: SystemUserSystemPermissionManageWebEntity): SystemUserSystemPermissionManageModel {
     return {
       id: param.id,
-      systemPermissions: param.systemPermissions,
+      Permissions: param.Permissions,
     };
   }
 
   mapTo(param: SystemUserSystemPermissionManageModel): SystemUserSystemPermissionManageWebEntity {
     return {
       id: param.id,
-      systemPermissions: param.systemPermissions,
+      Permissions: param.Permissions,
     };
   }
 }

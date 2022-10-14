@@ -14,7 +14,7 @@ import { SingleResultModel } from '../../../core/utils/responses/single-result.m
 import { SystemRoleSystemPermissionModel } from 'src/app/core/models/system-role-system-permission.model';
 import { SystemRoleSystemPermissionManageModel } from 'src/app/core/models/system-role-system-permission-manage.model';
 import { SystemRoleSystemPermissionWebEntity } from '../system-role-system-permission-web-repository/system-role-system-permission-web-entity';
-import { SystemRoleSystemPermissionManageWebRepositoryMapper } from '../system-user-system-permission-manage-web-repository copy/system-role-system-permission-manage-web-repository-mapper';
+import { SystemRoleSystemPermissionManageWebRepositoryMapper } from '../system-role-system-permission-manage-web-repository/system-role-system-permission-manage-web-repository-mapper';
 import { SystemRoleSystemPermissionWebRepositoryMapper } from '../system-role-system-permission-web-repository/system-role-permission-web-repository-mapper';
 
 @Injectable({

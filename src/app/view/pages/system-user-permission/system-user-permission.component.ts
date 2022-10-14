@@ -76,6 +76,7 @@ export class SystemUserPermissionComponent implements OnInit {
 
   applyButtonModal() {
     this.addInDataSource();
+    this.putSystemUserSystemPermissions();
     this.popupVisible = false;
   }
 
@@ -88,9 +89,7 @@ export class SystemUserPermissionComponent implements OnInit {
   putSystemUserSystemPermissions() {
     let body: SystemUserSystemPermissionManageModel = {
       id: this.selectedSystemUser.id,
-      systemPermissions: this.selectedSystemUser.systemPermissions.map(
-        (permission) => permission.id
-      ),
+      Permissions: this.selectedSystemUser.systemPermissions.map((permission) => permission.id),
     };
     this.putSystemUserSystemPermissionManageUseCase.execute(body).subscribe();
   }

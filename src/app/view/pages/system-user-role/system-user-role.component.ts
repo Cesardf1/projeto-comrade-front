@@ -75,6 +75,7 @@ export class SystemUserRoleComponent implements OnInit {
 
   applyButtonModal() {
     this.addInDataSource();
+    this.putSystemUserSystemRoles();
     this.popupVisible = false;
   }
 
@@ -87,8 +88,9 @@ export class SystemUserRoleComponent implements OnInit {
   putSystemUserSystemRoles() {
     let body: SystemUserSystemRoleManageModel = {
       id: this.selectedSystemUser.id,
-      systemRoles: this.selectedSystemUser.systemRoles.map((role) => role.id),
+      roles: this.selectedSystemUser.systemRoles.map((role) => role.id),
     };
+    console.log(body);
     this.putSystemUserSystemRoleManageUseCase.execute(body).subscribe();
   }
 }

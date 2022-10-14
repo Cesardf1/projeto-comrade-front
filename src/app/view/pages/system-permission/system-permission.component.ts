@@ -66,11 +66,6 @@ export class SystemPermissionComponent implements OnInit {
   }
 
   addRow(e: any): void {
-    console.log('ADD ROW');
-    this.info = {
-      name: e.data.name,
-      tag: e.data.tag,
-    };
     this.postSystemPermissionUseCase.execute(e.data).subscribe();
   }
 }

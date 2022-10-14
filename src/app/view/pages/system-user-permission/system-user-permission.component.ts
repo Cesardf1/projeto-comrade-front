@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { PageResultModel } from 'src/app/core/utils/responses/page-result.model';
-import { SystemUserModel } from 'src/app/core/models/system-user.model';
-import { DeleteSystemUserUsecase } from 'src/app/core/usecases/system-user/delete-system-user.usecase';
+import { SystemPermissionModel } from 'src/app/core/models/system-permission.model';
 import { GetAllSystemUserUsecase } from 'src/app/core/usecases/system-user/get-all-system-user.usecase';
-import { EditSystemUserUsecase } from 'src/app/core/usecases/system-user/edit-system-user.usecase';
-import { CreateSystemUserUsecase } from 'src/app/core/usecases/system-user/create-system-user.usecase';
-import { ModalService } from '../../components/modal/modal.service';
+import { GetAllSystemPermissionUsecase } from 'src/app/core/usecases/system-permission/get-all-system-permission.usecase';
+import { SystemUserSystemPermissionModel } from 'src/app/core/models/system-user-system-permission.model';
+import { SystemUserSystemPermissionManageModel } from 'src/app/core/models/system-user-system-permission-manage.model';
+import { GetAllSystemUserWithPermissionUsecase } from 'src/app/core/usecases/system-user/get-all-system-user-with-permission.usecase';
+import { ManagePermissionsUsecase } from 'src/app/core/usecases/system-user/manage-permissions.usecase';
 
 @Component({
   selector: 'app-system-user-permission',
@@ -14,36 +15,91 @@ import { ModalService } from '../../components/modal/modal.service';
   providers: [],
 })
 export class SystemUserPermissionComponent implements OnInit {
-  dataSource!: SystemUserModel[];
+  dataSource!: SystemUserSystemPermissionModel[];
+  dataSourceAux: SystemUserSystemPermissionModel[] = [];
+  permissions: SystemPermissionModel[] = [];
+  selectedSystemUser!: SystemUserSystemPermissionModel;
+  toolbarOptions = { text: 'apply', onClick: () => this.applyButtonModal() };
+  isPermissionVisible = false;
+  popupVisible = false;
+
   constructor(
     private getAllSystemUser: GetAllSystemUserUsecase,
-    private createSystemUser: CreateSystemUserUsecase,
-    private deleteSystemUser: DeleteSystemUserUsecase,
-    private editSystemUser: EditSystemUserUsecase,
-    private modalService: ModalService
+    private getAllSystemUserWithPermissions: GetAllSystemUserWithPermissionUsecase,
+    private getAllSystemPermission: GetAllSystemPermissionUsecase,
+    private putSystemUserSystemPermissionManageUseCase: ManagePermissionsUsecase
   ) {}
 
+  handleCellClick(e: any) {
+    console.log(e.data);
+  }
   ngOnInit(): void {
-    this.getAllSystemUser
+    this.getPermissions();
+    this.getSystemUsers();
+  }
+
+  setValue(permission: SystemPermissionModel) {
+    return this.selectedSystemUser.systemPermissions.some(
+      (systemPermission) => permission.id == systemPermission.id
+    );
+  }
+
+  showInfo(e: any) {
+    this.selectedSystemUser = JSON.parse(JSON.stringify(e.data));
+    this.popupVisible = true;
+    console.log(this.selectedSystemUser);
+    console.log(e.data);
+  }
+
+  getPermissions() {
+    this.getAllSystemPermission
       .execute({ pageSize: 20, pageNumber: 1 })
-      .subscribe((grid: PageResultModel<SystemUserModel>) => {
+      .subscribe((grid: PageResultModel<SystemPermissionModel>) => {
+        console.log(grid.data);
+        this.permissions = grid.data!;
+      });
+  }
+
+  getSystemUsers() {
+    this.getAllSystemUserWithPermissions
+      .execute({ pageSize: 20, pageNumber: 1 })
+      .subscribe((grid: PageResultModel<SystemUserSystemPermissionModel>) => {
         this.dataSource = grid.data!;
       });
   }
 
-  delete(e: any): void {
-    this.deleteSystemUser.execute(e.key).subscribe();
+  handleValueChanged(permission: SystemPermissionModel, e: any) {
+    if (e.value == true) {
+      this.selectedSystemUser.systemPermissions.push(permission);
+    } else {
+      this.removePermissionById(permission);
+    }
   }
 
-  beforeSave(e: any): void {
-    e.data.registerDate = new Date();
+  removePermissionById(permission: SystemPermissionModel) {
+    this.selectedSystemUser.systemPermissions = this.selectedSystemUser.systemPermissions.filter(
+      (systemPermission) => systemPermission.id != permission.id
+    );
   }
 
-  save(e: any): void {
-    this.createSystemUser.execute(e.data).subscribe();
+  applyButtonModal() {
+    this.addInDataSource();
+    this.popupVisible = false;
   }
 
-  update(e: any): void {
-    this.editSystemUser.execute(e.data).subscribe();
+  addInDataSource() {
+    const indexOfObject = this.dataSource.findIndex((object) => {
+      return object.id === this.selectedSystemUser.id;
+    });
+    this.dataSource[indexOfObject] = this.selectedSystemUser;
+  }
+  putSystemUserSystemPermissions() {
+    let body: SystemUserSystemPermissionManageModel = {
+      id: this.selectedSystemUser.id,
+      systemPermissions: this.selectedSystemUser.systemPermissions.map(
+        (permission) => permission.id
+      ),
+    };
+    this.putSystemUserSystemPermissionManageUseCase.execute(body).subscribe();
   }
 }
